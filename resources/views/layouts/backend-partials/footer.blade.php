@@ -1,6 +1,6 @@
   <!-- Footer -->
   <footer class="footer">
-    All Rights Reserved. © {{ now()->year }} <a href="{{ env('DEV_WEBSITE') }}"> - {{ ENV('APP_DEVELOPER') }} </a>
+    All Rights Reserved. © {{ now()->year }} <a href="{{ config('app.url') }}"> - {{ config('app.name') }} </a>
  </footer>
  <!-- End Footer -->
 </div>

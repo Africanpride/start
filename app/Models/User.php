@@ -44,4 +44,18 @@ class User extends Authenticatable
     ];
 
     protected $table = 'users';
+
+    public function profile () {
+        return $this->hasOne(Profile::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function($user) {
+            // Create profile here
+            Profile::create(['user_id' => $user->id]);
+        });
+    }
 }

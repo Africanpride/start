@@ -10,43 +10,64 @@
                 <div class="d-flex align-items-start align-items-sm-end justify-content-between mb-3">
                     <h4 class="aside-btn-text c1 d-xl-flex align-items-center">Users Table</h4>
 
+                    <form action="#" class="search-form w-50">
+                        <div class="theme-input-group">
+                           <input type="text" class="theme-input-style" placeholder="Search Here">
 
-                    <div class="btn">Add New User</div></div>
+                           <button type="submit"><img src="{{ asset('/backend/assets/img/svg/search-icon.svg') }}" alt="" class="svg"></button>
+                        </div>
+                     </form>
+
+
+                    <div class="btn">Add New User</div>
+                </div>
 
             </div>
             <div class="table-responsive">
                 <table class="style--one table-striped ">
-                   <thead>
-                     <tr>
-                        <th></th>
-                        <th>User Id</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                        <th>View Profile</th>
-                     </tr>
-                   </thead>
-                   <tbody>
-                    @forelse ($users ?? '' as $user)
-                    <tr>
-                      <td><img src="{{  $user->avatar ?? '' }}" alt=""></td>
-                      <td>{{ $user->id }}</td>
-                      <td>{{ $user->first_name }}</td>
-                      <td>{{ $user->last_name }}</td>
-                      <td>{{ $user->email }}</td>
-                      <td>{{ $user->role }}</td>
-                      <td><a href="{{ $user->email }}" class="details-btn">{{ _('View Profile')}} <i class="icofont-arrow-right"></i></a></td>
-                  @empty
-                      {{ __('Sorry nothing to show') }}
-                  @endforelse
+                    <thead>
+                        <tr>
+                            <th>Avatar</th>
+                            <th>User Id</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>View Profile</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($users ?? '' as $user)
+                            <tr>
+                                <td><img src="{{ asset('/backend/assets/img/avatar/avatar.jpg') }}"  class="avatar" alt=""></td>
+                                <td>{{ $user->id }}</td>
+                                <td>{{ $user->first_name }}</td>
+                                <td>{{ $user->last_name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->role }}</td>
+                                <td><a href="{{ $user->avatar }}"
+                                        class="details-btn">{{ __('View Profile') }} <i
+                                            class="icofont-arrow-right"></i></a></td>
+                            @empty
+                                {{ __('Sorry nothing to show') }}
+                        @endforelse
 
 
-                   </tbody>
-                 </table>
-             </div>
+
+
+                    </tbody>
+                </table>
+
+
+            </div>
         </div>
     </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        {{ $users->links("pagination::bootstrap-4") }}
     </div>
+</div>
 
 @endsection

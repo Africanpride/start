@@ -10307,3 +10307,13 @@ h3 {
 .small {
   font-size: 0.875rem !important;
 }
+
+
+/*
+Featured Edits
+*/
+
+.page-item.active .page-link {
+	background-color: #6610f2;
+	border-color: #6610f2;
+}

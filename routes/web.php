@@ -17,8 +17,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('profile', ProfileController::class);
+
+Route::get('/analytics', function () {
+    return view('analytics');
+})->name('analytics');
+
+Route::get('/settings', function () {
+    return view('settings');
+})->name('settings');
+
 Route::get('users', function () {
-    $users = User::all();
+    $users = User::paginate('10');
     return view('users', ['users' => $users]);
 })->name('users');
 

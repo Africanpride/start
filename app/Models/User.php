@@ -44,7 +44,10 @@ class User extends Authenticatable
     ];
 
     protected $table = 'users';
+    public $incrementing = false;
 
+
+    // $user->profile
     public function profile () {
         return $this->hasOne(Profile::class);
     }

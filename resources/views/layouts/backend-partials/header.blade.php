@@ -95,27 +95,21 @@
                        <div class="main-header-user">
                         <a href="#" class="d-flex align-items-center" data-toggle="dropdown">
                           <div class="avatar mr-20">
-                              <img src="{{ asset('/backend/assets/img/avatar/avatar-user.png')}}" alt="">
+                            @auth
+                              <img src="{{ '/backend/assets/img/avatar/'. Auth::user()->profile->avatar }}" alt="">
                               <span class="avatar-status bg-teal"></span>
+                            @else
+                            <img src="{{ asset('backend/assets/img/avatar/avatar-user.png') }}" alt="">
+                            {{-- Make red or green based on online status --}}
+                            <span class="avatar-status bg-teal"></span>
+                            @endauth
                           </div>
-
-                           <div class="user-profile d-xl-flex align-items-center d-none">
-                              <!-- User Avatar -->
-                              <div class="user-avatar">
-                                 <img src = " {{ asset('backend/assets/img/avatar/user.png') }}" alt="">
-                              </div>
-                              <!-- End User Avatar -->
-
-                              <!-- User Info -->
-                              <div class="user-info">
-                                 <h4 class="user-name">Abrilay Khatun</h4>
-                                 <p class="user-email">abrilakh@gmail.com</p>
-                              </div>
-                              <!-- End User Info -->
-                           </div>
                         </a>
+                        @auth
                         <div class="dropdown-menu">
-                           <a href="#">My Profile</a>
+
+                            <a href="{{ route('profile.show', [Auth::user()->profile->uuid]) }}">My Profile</a>
+
                            <a href="#">task</a>
                            <a href="#">Settings</a>
 
@@ -130,6 +124,7 @@
                           </form>
 
                         </div>
+                        @endauth
                      </div>
                      <!-- End Main Header User -->
                          </li>

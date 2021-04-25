@@ -1,7 +1,7 @@
+
 @extends('layouts.backend')
 
 @section('content')
-
 
 <div class="row">
     <div class="col-12">
@@ -28,7 +28,6 @@
                     <thead>
                         <tr>
                             <th>Avatar</th>
-                            <th>User Id</th>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email</th>
@@ -39,13 +38,12 @@
                     <tbody>
                         @forelse($users ?? '' as $user)
                             <tr>
-                                <td><img src="{{ asset('/backend/assets/img/avatar/avatar.jpg') }}"  class="avatar" alt=""></td>
-                                <td>{{ $user->id }}</td>
+                                <td><img src="{{ '/backend/assets/img/avatar/'. $user->profile->avatar }}"  class="avatar" alt=""></td>
                                 <td>{{ $user->first_name }}</td>
                                 <td>{{ $user->last_name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->role }}</td>
-                                <td><a href="{{ $user->avatar }}"
+                                <td><a href="{{ route('profile.show', [$user->profile->uuid]) }}"
                                         class="details-btn">{{ __('View Profile') }} <i
                                             class="icofont-arrow-right"></i></a></td>
                             @empty

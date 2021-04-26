@@ -31,5 +31,7 @@
    <!-- ======= MAIN STYLES ======= -->
    <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css')  }}">
    <!-- ======= END MAIN STYLES ======= -->
+
+   <link rel="stylesheet" href="{{ asset('backend/assets/plugins/dropzone/dropzone.min.css')  }}">
    @livewireStyles
 </head>

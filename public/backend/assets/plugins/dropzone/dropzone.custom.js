@@ -12,10 +12,9 @@ Author url    :  http://themelooks.com
 
 $(function() {
     'use strict';
-    
+
     Dropzone.options.dropzone01 = {
-        addRemoveLinks: true,
+        addRemoveLinks: false,
         dictRemoveFile: ''
     };
 });
-      

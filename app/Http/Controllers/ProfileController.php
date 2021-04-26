@@ -2,17 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Profile;
 use App\Models\User;
+// use Ramsey\Uuid\Uuid;
+use App\Models\Profile;
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
+use Emadadly\LaravelUuid\Uuids;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
+    use Uuids;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function photos(Request $request, $uuid) {
+        $request->validate([
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        $profile = Profile::findOrFail($uuid); // Get the profile we are dealing with
+        dd($profile);
+        if ($request->hasFile('avatar')) {
+            Storage::delete('backend/assets/img/avatar/' . $profile->avatar); // Delete profile image on disk. We want to save space
+            // $originalName = $request->avatar->getClientOriginalName();
+            $path = Storage::putFile('avatar', new File('/backend/assets/img/avatar'));
+            // $filename = $request->avatar->storeAs('/uploads/images', $originalName, 'public');
+            $profile->update(['avatar' => $path]);
+        }
+
+        return redirect()->back()->with(['status' => 'Profile updated successfully.']);
+
+    }
+
+
     public function index()
     {
         //

@@ -18,10 +18,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/test', function () {
-    dd(auth()->user()->id);
+Route::get('/photos', function () {
+    return view('photos');
 });
+Route::get('/photos', function () {
+    $profile = auth()->user()->profile;
+    return view('photos', compact('profile'));
+});
+
+Route::post('photos', 'ProfileController@photos');
+
 
 
 

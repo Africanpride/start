@@ -17,6 +17,14 @@
 <script src = "  {{ asset('backend/assets/plugins/apex/apexcharts.min.js') }}"></script>
 <script src = "  {{ asset('backend/assets/plugins/apex/custom-apexcharts.js') }}"></script>
 <!-- ======= End BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
+
+<!-- ======= BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
+<script src="  {{ asset('backend/assets/plugins/dropzone/dropzone.min.js') }}"></script>
+<script src="  {{ asset('backend/assets/plugins/dropzone/dropzone.custom.js') }}"></script>
+<script src="  {{ asset('backend/assets/plugins/dropzone/dropzone.new.js') }}"></script>
+
+<!-- ======= End BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
+
 @stack('modals')
 
 @livewireScripts

@@ -11414,7 +11414,7 @@ select#locale {
   top: 6px;
   position: absolute;
   content: "";
-  background-color: rgba(0, 0, 0, 0.4);
+  /* background-color: rgba(0, 0, 0, 0.4); */
   opacity: 0;
 }
 
@@ -11449,7 +11449,7 @@ select#locale {
   top: 0;
   position: absolute;
   content: "";
-  background-color: rgba(0, 0, 0, 0.4);
+  /* background-color: rgba(0, 0, 0, 0.4); */
   opacity: 0;
 }
 

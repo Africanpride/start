@@ -2,45 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-// use Ramsey\Uuid\Uuid;
 use App\Models\Profile;
-use Illuminate\Http\File;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Emadadly\LaravelUuid\Uuids;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    use Uuids;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function photos(Request $request, $uuid) {
-        $request->validate([
-            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-        $profile = Profile::findOrFail($uuid); // Get the profile we are dealing with
-        dd($profile);
-        if ($request->hasFile('avatar')) {
-            Storage::delete('backend/assets/img/avatar/' . $profile->avatar); // Delete profile image on disk. We want to save space
-            // $originalName = $request->avatar->getClientOriginalName();
-            $path = Storage::putFile('avatar', new File('/backend/assets/img/avatar'));
-            // $filename = $request->avatar->storeAs('/uploads/images', $originalName, 'public');
-            $profile->update(['avatar' => $path]);
-        }
-
-        return redirect()->back()->with(['status' => 'Profile updated successfully.']);
-
-    }
-
-
     public function index()
     {
-        //
-        return view('profiles.index');
+        if( view()->exists('profile.index') ){
+
+            $user = Auth::user();
+            return view('profile.index', compact('user'));
+
+          }
     }
 
     /**
@@ -48,7 +29,6 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function create()
     {
         //
@@ -62,7 +42,7 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+                //
     }
 
     /**
@@ -73,10 +53,10 @@ class ProfileController extends Controller
      */
     public function show($uuid)
     {
-
         $profile = Profile::uuid($uuid);
-        return view('profile.show', compact('profile'));
-
+        $user = User::find($profile->user->id);
+        // dd($profile->uuid);
+        return view('profile.show', compact('profile', 'user'));
     }
 
     /**
@@ -88,9 +68,6 @@ class ProfileController extends Controller
     public function edit(Profile $profile)
     {
         //
-
-
-
     }
 
     /**
@@ -100,9 +77,12 @@ class ProfileController extends Controller
      * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Profile $profile)
+    public function update(Request $request, $uuid)
     {
-        //
+        $profile = Profile::uuid($uuid);
+        $profile->update($request->all());
+
+        return redirect()->back()->with('success_message', 'Profile was successfully updated.');
     }
 
     /**

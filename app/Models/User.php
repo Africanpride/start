@@ -44,7 +44,7 @@ class User extends Authenticatable
     ];
 
     protected $table = 'users';
-    public $incrementing = false;
+    // public $incrementing = false;
 
 
     // $user->profile
@@ -59,6 +59,7 @@ class User extends Authenticatable
         static::created(function($user) {
             // Create profile here
             Profile::create(['user_id' => $user->id]);
+            // dd($user);
         });
     }
 }

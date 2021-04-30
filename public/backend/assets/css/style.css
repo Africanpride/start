@@ -12384,3 +12384,21 @@ select#locale {
 	color: #6610f2;
 	border: 1px solid #dee2e6;
 }
+
+
+.pills-switch {
+	border-bottom: 1px solid #6045E2 !important;
+}
+
+.tab-switch {
+	border-radius: 0px !important;
+}
+.tab-switch:active {
+	background-color: #6045e2;
+}
+
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+	color: #fff;
+	background-color: #6045e2 !important;
+}

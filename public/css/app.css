@@ -10321,3 +10321,12 @@ Featured Edits
 .display-non {
     display: none !important;
 }
+
+
+.pills-switch {
+	border-bottom: 1px solid #007bff !important;
+}
+
+.tab-switch {
+	border-radius: 0px !important;
+}

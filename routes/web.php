@@ -18,20 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/photos', function () {
-    return view('photos');
-});
-Route::get('/photos', function () {
-    $profile = auth()->user()->profile;
-    return view('photos', compact('profile'));
-});
 
-Route::post('photos', 'ProfileController@photos');
-
-
-
-
-Route::resource('profile', ProfileController::class);
+// Profile
+Route::patch('profile/{uuid}', 'App\Http\Controllers\ProfileController@update')->name('profile.update');
+Route::resource('profile', 'App\Http\Controllers\ProfileController');
 
 Route::get('/analytics', function () {
     return view('analytics');

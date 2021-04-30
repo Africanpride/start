@@ -15,6 +15,7 @@
         "livewire/livewire": "^2.4"
     },
     "require-dev": {
+        "crestapps/laravel-code-generator": "^2.4",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "jasonmccreary/laravel-test-assertions": "^1.1",

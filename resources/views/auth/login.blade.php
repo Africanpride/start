@@ -16,12 +16,17 @@
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
-                <!-- Email Address -->
-                <div class="form-group">
-                    <x-label for="email" :value="__('Email')" />
+                <div class="form-group mb-4">
+                    <x-label for="addonEmail" class="mb-2 font-14 black bold" :value="__('Email Address')" />
 
-                    <x-input id="email" type="email" name="email" :value="old('email')" required autofocus />
+                    <div class="input-group addon">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text black bold">@</div>
+                      </div>
+                      <x-input id="email" type="email" name="email" :value="old('email')" required autofocus name="email" class="form-control" placeholder="Type your email here" />
+                    </div>
                 </div>
+
 
                 <!-- Password -->
                 <div class="form-group">
@@ -33,19 +38,24 @@
                 </div>
 
                 <!-- Remember Me -->
-                <div class="form-group">
-                    <div class="form-check">
-                        <x-checkbox id="remember_me" name="remember" />
+                <div class="d-flex align-items-center mb-3 mt-4">
+                    <!-- Custom Checkbox -->
+                    <label class="custom-checkbox brand position-relative mr-2">
+                        <input type="checkbox" id="remember_me" checked=""  name="remember">
+                        <span class="checkmark"></span>
+                    </label>
+                    <!-- End Custom Checkbox -->
 
-                        <label class="form-check-label" for="remember_me">
-                            {{ __('Remember Me') }}
-                        </label>
-                    </div>
+
+                    <label class="form-check-label" for="remember_me">
+                        {{ __('Remember Me') }}
+                    </label>
                 </div>
+
 
                 <div class="mb-2">
                     <div class="d-flex justify-content-center align-items-baseline">
-                        <x-register-button>
+                        <x-register-button class="btn long">
                             {{ __('Log in') }}
                         </x-register-button>
                     </div>

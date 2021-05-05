@@ -27,10 +27,16 @@
                 </div>
 
                 <!-- Email Address -->
-                <div class="form-group">
-                    <x-label for="email" :value="__('Email')" />
 
-                    <x-input id="email" type="email" name="email" :value="old('email')" required />
+                <div class="form-group mb-4 pt-8">
+                    <x-label for="email" class="mb-2 font-14 black bold" :value="__('Email Address')" />
+
+                    <div class="input-group addon">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text black bold">@</div>
+                      </div>
+                      <x-input id="email" type="email" name="email" :value="old('email')" required autofocus name="email" class="form-control" placeholder="Type your email here" />
+                    </div>
                 </div>
 
                 <!-- Password -->

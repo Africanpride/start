@@ -7,10 +7,10 @@
     <div class="col-12">
         <div class="card mb-30">
             <div class="card-body py-30 pb-0">
-                <div class="d-flex align-items-start align-items-sm-end justify-content-between mb-3">
+                <div class="d-flex justify-content-between mb-3 align-items-center">
                     <h4 class="aside-btn-text c1 d-xl-flex align-items-center">Users Table</h4>
 
-                    <form action="#" class="search-form w-50">
+                    <form action="#" class="search-form col-7 col-xl-7 ">
                         <div class="theme-input-group">
                            <input type="text" class="theme-input-style" placeholder="Search Here">
 

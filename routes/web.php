@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use App\Models\Profile;
+use App\Models\Article;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,8 +21,8 @@ Route::get('/', function () {
 });
 
 // Profile
-Route::patch('profile/{uuid}', 'App\Http\Controllers\ProfileController@update')->name('profile.update');
-Route::resource('profile', 'App\Http\Controllers\ProfileController');
+Route::patch('profile/{uuid}', 'ProfileController@update')->name('profile.update');
+Route::resource('profile', 'ProfileController');
 
 Route::get('/analytics', function () {
     return view('analytics');
@@ -41,3 +42,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+
+ Route::resource('articles', 'ArticleController');
+
+

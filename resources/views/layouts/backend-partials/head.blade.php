@@ -3,7 +3,7 @@
 
 <head>
    <!-- Page Title -->
-   <title>Dashmin - Multipurpose Bootstrap Dashboard Template</title>
+   <title> {{ config('app.email') }}</title>
 
    <!-- Meta Data -->
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,10 +28,22 @@
    <link rel="stylesheet" href="{{ asset('backend/assets/plugins/apex/apexcharts.css ')  }}">
    <!-- ======= END BEGIN PAGE LEVEL PLUGINS STYLES ======= -->
 
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+
    <!-- ======= MAIN STYLES ======= -->
    <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css')  }}">
+   <link rel="stylesheet" href="{{ asset('/public/css/app.css')  }}">
    <!-- ======= END MAIN STYLES ======= -->
+
+   {{-- <link href="https://cdn.quilljs.com/1.0.5/quill.snow.css" rel="stylesheet"> --}}
+
+   {{-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"> --}}
+   {{-- <link rel='stylesheet' href="//bower_components/glyphicons-only-bootstrap/css/bootstrap.min.css" /> --}}
+   {{-- <link rel = "stylesheet" href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> --}}
 
    <link rel="stylesheet" href="{{ asset('backend/assets/plugins/dropzone/dropzone.min.css')  }}">
    @livewireStyles
+
+
+
 </head>

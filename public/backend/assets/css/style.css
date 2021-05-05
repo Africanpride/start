@@ -1,3 +1,4 @@
+@import '~quill/dist/quill.snow.css';
 /*
 	*******************
 	Template name:  Dashmin
@@ -12401,4 +12402,17 @@ select#locale {
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
 	color: #fff;
 	background-color: #6045e2 !important;
+}
+
+
+#full-editor {
+    min-height: 400px;
+}
+
+
+[class^="bi-"]::before, [class*=" bi-"]::before {
+    font-size: 18px;
+}
+.btn, #example-vertical > .actions ul li a[href="#next"], #example-vertical > .actions ul li a[href="#finish"] {
+	padding: 12px 24px;
 }

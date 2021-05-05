@@ -64,7 +64,7 @@
                           <li class="d-none d-lg-flex">
                              <!-- Main Header Button -->
                              <div class="main-header-btn ml-md-1">
-                                <a href="#" class="btn"> <img src="{{ asset('backend/assets/img/svg/plus_white.svg') }}" alt="" class="svg mr-1"> Create New Article</a>
+                                <a href="{{ route('articles.create')}}" class="btn"> <img src="{{ asset('backend/assets/img/svg/plus_white.svg') }}" alt="" class="svg mr-1"> Create New Article</a>
                              </div>
                              <!-- End Main Header Button -->
                           </li>

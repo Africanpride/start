@@ -52,6 +52,12 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
         ],
 
+        'uploads' => [
+            'driver' => 'local',
+            'root' => 'backend_uploads',
+            'url' => 'backend_uploads',
+          ],
+
     ],
 
     /*

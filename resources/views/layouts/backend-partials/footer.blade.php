@@ -27,6 +27,11 @@
   <script src="  {{ asset('backend/assets/plugins/dropzone/dropzone.custom.js') }}"></script>
   <script src="  {{ asset('backend/assets/plugins/dropzone/dropzone.new.js') }}"></script>
 
+     <!-- ======= BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
+     <script src=" {{ asset('backend/assets/plugins/jquery-repeater/repeater.min.js ' ) }}"></script>
+     <script src=" {{ asset('backend/assets/plugins/jquery-repeater/custom-repeater.js ' ) }}"></script>
+     <!-- ======= End BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
+
   {{-- <script src="https://cdn.quilljs.com/1.0.5/quill.min.js" type="text/javascript"></script> --}}
   {{-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> --}}
 
@@ -130,7 +135,7 @@
       "insertdatetime media nonbreaking save table directionality",
       "emoticons template paste textpattern"
     ],
-    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media emoticons",
     file_picker_callback : function(callback, value, meta) {
       var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
       var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;

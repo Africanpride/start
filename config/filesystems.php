@@ -56,7 +56,15 @@ return [
             'driver' => 'local',
             'root' => 'backend_uploads',
             'url' => 'backend_uploads',
+            'visibility' => 'public',
+
           ],
+
+        'media' => [
+            'driver' => 'local',
+            'root'   => public_path('media'),
+            'url' =>    env('APP_URL') . '/media',
+        ],
 
     ],
 

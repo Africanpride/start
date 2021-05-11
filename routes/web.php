@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Laravel file manager
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
 Route::get('/', function () {
     return view('welcome');
 });

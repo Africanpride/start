@@ -34,7 +34,7 @@
 
                         <form method="POST" action="{{ route('articles.store') }}"
                             accept-charset="UTF-8" id="create_article_form" name="create_article_form"
-                            class="form-horizontal">
+                            class="form-horizontal"  enctype="multipart/form-data">
                             {{ csrf_field() }}
 
                             @include('articles.form', [

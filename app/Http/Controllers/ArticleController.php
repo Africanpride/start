@@ -81,7 +81,8 @@ class ArticleController extends Controller
             'user_id'   =>  $user->id,
             'title'     =>  $title,
             'slug'      =>  $slug,
-            'content'   =>  $content
+            'content'   =>  $content,
+            'notes'   =>  $notes
             ]);
             if ($request->has('images'))  {
                 // dd($request->images);

@@ -11,8 +11,12 @@
 
 {{-- <textarea id="full-editor" class="mb-30 pb-20 col-md-9" name="content"  tinymce-editor></textarea> --}}
 
-<textarea id="full-editor" name="content" rows="5" cols="40" class="form-control tinymce-editor mb-40 pb-40 col-md-9">{!! old('content', optional($article)->content) !!}</textarea>
-
+<div class="textarea p-30">
+    <textarea id="full-editor" name="content" rows="5" cols="40" class="form-control tinymce-editor mb-40 pb-40 col-md-9">{!! old('content', optional($article)->content) !!}</textarea>
+</div>
+<div class="textarea  p-30">
+    <textarea name ="notes" id="textarea1" class="theme-input-style style--seven" placeholder="Type Article Notes Notes Here">{!! old('notes', optional($article)->notes) !!}</textarea>
+</div>
 <div class="col-12 file-repeater mt-3">
     <div data-repeater-list="images">
         <div data-repeater-item>

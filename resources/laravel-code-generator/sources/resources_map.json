@@ -1,1 +1,6 @@
-[]
+[
+    {
+        "model-name": "Profile",
+        "resource-file": "profiles.json"
+    }
+]

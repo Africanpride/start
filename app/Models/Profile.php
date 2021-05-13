@@ -11,6 +11,8 @@ class Profile extends Model
 {
     use HasFactory, Uuids;
 
+    protected $table = 'profile';
+
     protected $fillable = [
     'bio', 'address1', 'address2', 'post_code',
     'country', 'phone','banner', 'avatar', 'linkedin','twitter',

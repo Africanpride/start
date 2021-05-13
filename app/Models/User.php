@@ -62,6 +62,7 @@ class User extends Authenticatable
 
         static::created(function($user) {
             // Create profile here
+            // dd($user->id);
             Profile::create(['user_id' => $user->id]);
             // dd($user);
         });

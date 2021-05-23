@@ -1,5 +1,32 @@
+# draft.yaml
 models:
-  # ...
+    Comment:
+        comment_id: id foreign
+        content: longtext:400
+        published_at: nullable timestamp
 
 controllers:
-  # ...
+    Comment:
+        index:
+            query: all
+            render: comment.index with:comments
+        create:
+            render: comment.create
+        store:
+            validate: title, content, author_id
+            save: comment
+            dispatch: SyncMedia with:comment
+            notify: comment.author Reviewcomment with:comment
+            send: Reviewcomment to:comment.author with:comment
+            flash: comment.title
+            fire: Newcomment with:comment
+            redirect: comment.index
+        update:
+            update: comment
+            dispatch: SyncMedia with:comment
+
+        destroy:
+            flash: comment.title
+            send: SupportcommentDeleted to:support with:comment
+            delete: comment
+            redirect: comment.index

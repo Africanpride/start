@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 
-
+{{ dd($analyticsData )}}
 @section('content')
 
          <!-- Main Content -->

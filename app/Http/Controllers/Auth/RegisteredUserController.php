@@ -36,8 +36,11 @@ class RegisteredUserController extends Controller
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users|domain:skytracking.eu,sktaeroshutter.com,pakatron.com',
             'password' => 'required|string|confirmed|min:8',
+        ],
+         $messages = [
+            'email.domain' => 'The :attribute not allowed.'
         ]);
 
         $user = User::create([

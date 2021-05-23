@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use App\Models\Business;
+use illuminate\support\Facades\View;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,5 +28,10 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Paginator::defaultView('pagination::bootstrap-4');
+
+        $business = Business::all()->first();
+        // view()->share('business', $business);
+        View::share('business', $business);
+
     }
 }

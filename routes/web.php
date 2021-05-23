@@ -1,8 +1,14 @@
 <?php
 
 use App\Models\User;
-use App\Models\Profile;
 use App\Models\Article;
+use App\Models\Comment;
+use App\Models\Profile;
+use App\Models\Business;
+use Illuminate\Auth\Events\Validated;
+use Illuminate\Http\Request;
+use Spatie\Analytics\Period;
+use Spatie\Analytics\Analytics;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +39,17 @@ Route::get('/analytics', function () {
     return view('analytics');
 })->name('analytics');
 
+Route::get('/test', function () {
+    $business = Business::all()->first();
+    // dd($business->id);
+    return view('test', compact('business'));
+})->name('test');
+
+Route::post('/test', function (Request $request) {
+
+return view('test');
+})->name('test');
+
 Route::get('/settings', function () {
     return view('settings');
 })->name('settings');
@@ -42,6 +59,11 @@ Route::get('users', function () {
     return view('users', ['users' => $users]);
 })->name('users');
 
+// Route::get('seo', function () {
+//     $users = User::paginate('10');
+//     return view('seo', ['users' => $users]);
+// })->name('seo');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
@@ -49,6 +71,20 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 
- Route::resource('articles', 'ArticleController');
+// Resourceful Controllers
+Route::resource('articles', 'ArticleController');
+Route::resource('business', 'BusinessController');
 
+Route::get('seo', 'BusinessController@index')->name('seo');
+Route::post('seo', 'BusinessController@store')->name('seo');
 
+Route::resource('comment', 'CommentController')->except('edit', 'show');
+
+Route::get('analytics', 'AnalyticsController')->name('analytics');
+
+// Route::get('analytics', function () {
+//     //retrieve visitors and pageview data for the current day and the last seven days
+//     $analyticsData = Analytics::fetchVisitorsAndPageViews(Period::days(7));
+//     // dd($analyticsData);
+//     return view('analytics', compact('analyticsData'));
+// });

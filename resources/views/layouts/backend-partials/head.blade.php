@@ -9,8 +9,8 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta http-equiv="content-type" content="text/html; charset=utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
-   <meta name="description" content="">
-   <meta name="keywords" content="">
+   <meta name="description" content="{{ $business->business_description ?? ' ' }}">
+   <meta name="keywords" content="{{ $business->seo_keywords ?? ' '  }}">
 
    <!-- Favicon -->
    <link rel="shortcut icon" href="{{ asset('backend/assets/img/favicon.png') }}">
@@ -42,8 +42,7 @@
    {{-- <link rel = "stylesheet" href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> --}}
 
    <link rel="stylesheet" href="{{ asset('backend/assets/plugins/dropzone/dropzone.min.css')  }}">
+   <link rel="stylesheet" href="{{ asset('backend/assets/plugins/sweetalert2/sweetalert2.min.css') }}">
    @livewireStyles
-
-
 
 </head>

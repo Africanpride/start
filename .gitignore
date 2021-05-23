@@ -4,6 +4,7 @@
 /public/storage
 /storage/*.key
 /vendor
+/service-account-credentials.json
 .env
 .env.backup
 .phpunit.result.cache

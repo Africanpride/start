@@ -56,7 +56,6 @@ class ArticleController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
         // validate
         $request->validate([
             'title' => 'required|unique:articles|max:255',
@@ -74,6 +73,7 @@ class ArticleController extends Controller
         $slug      =  Str::slug($request->title);
         $content   =  $request->content;
         $notes   =  $request->notes;
+        $file = $request->file('image');
 
         // Ok. Validated. everything is solid.
 
@@ -84,14 +84,12 @@ class ArticleController extends Controller
             'content'   =>  $content,
             'notes'   =>  $notes
             ]);
-            if ($request->has('images'))  {
-                // dd($request->images);
-                $article->addMediaFromRequest('images.0.image')->toMediaCollection('featured');
-            }
 
+        if ($request->hasfile('image'))  {
+            $article->addMediaFromRequest('image')->toMediaCollection('featured');
+        }
 
-
-           return redirect()->route('articles.index')->with('success_message', trans('articles.model_was_added'));
+        return redirect()->route('articles.index')->with('success_message', trans('articles.model_was_added'));
 
     }
 
@@ -105,8 +103,14 @@ class ArticleController extends Controller
      */
     public function show($slug)
     {
+        $media = '';
         $article = Article::where('slug', $slug)->first();
-        return view('articles.show', compact('article'));
+        if (!$article->getFirstMedia('featured') == null) {
+            $media = $article->getFirstMedia('featured')->geturl();
+        }
+
+
+        return view('articles.show', compact('article', 'media'));
     }
 
     /**
@@ -120,8 +124,11 @@ class ArticleController extends Controller
     {
         $article = Article::where('slug', $slug)->first();
         $creators = User::pluck('email','id')->all();
+        if (!$article->getFirstMedia('featured') == null) {
+            $media = $article->getFirstMedia('featured')->geturl();
+        }
 
-        return view('articles.edit', compact('article','creators'));
+        return view('articles.edit', compact('article','creators','media'));
     }
 
     /**
@@ -132,14 +139,14 @@ class ArticleController extends Controller
      *
      * @return Illuminate\Http\RedirectResponse | Illuminate\Routing\Redirector
      */
-    public function update($slug, ArticlesFormRequest $request)
+    public function update($slug, Request $request)
     {
 
         $request->validate([
-            'title' => 'required|max:255',
+            'title' => 'string|min:1|nullable',
             'content' => 'string|min:1|nullable',
-            'notes' => 'string|min:1|max:1000|nullable',
-            'featured' => 'nullable',
+            'notes' => 'string|min:1|nullable',
+            'featured' => 'mimes:jpg,png,jpeg,gif,svg|max:2048|nullable',
         ]);
         // dd($request->all());
 
@@ -150,9 +157,13 @@ class ArticleController extends Controller
         $title     =  $request->title;
         $slug      =  Str::slug($request->title);
         $content   =  $request->content;
-        $notes   =  $request->notes;
-        if ($request->has('images'))  {
-            $article->addMediaFromRequest('images.0.image')->toMediaCollection('featured');
+        $notes      =  $request->notes;
+        $file       = $request->file('image');
+
+        // dd($file);
+
+        if ($request->hasfile('image'))  {
+            $article->addMediaFromRequest('image')->toMediaCollection('featured');
         }
 
         // $article->addMediaFromRequest('image')->toMediaCollection('media');
@@ -160,7 +171,8 @@ class ArticleController extends Controller
             'user_id'   =>  $user->id,
             'title'     =>  $title,
             'slug'      =>  $slug,
-            'content'   =>  $content
+            'content'   =>  $content,
+            'notes'   =>  $notes
             ]);
 
         return redirect()->route('articles.show', $article->slug)->with('success_message','<b> <i>' . $title .  '</i></b>' .  ' is Updated successfully ');

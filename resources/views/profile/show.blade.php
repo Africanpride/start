@@ -380,13 +380,14 @@
                                                         <div class="card-body p-30">
                                                             <div class="about-myself mb-5">
                                                                 <h4 class="mb-3">About Myself</h4>
+                                                                <textarea id="textarea1" class="theme-input-style style--seven" placeholder="{{ $profile->bio ?? 'Type Here' }}" form="profile_form" >{{ $profile->bio }}</textarea>
 
-                                                                <textarea form="profile_form"
+                                                                {{-- <textarea form="profile_form"
                                                                     class="theme-input-style style--two" name="bio"
                                                                     placeholder="{{ old('bio', optional ($profile)->bio) }} "
                                                                     wrap="hard">
                                                                     {{ $profile->bio }}
-                                                                 </textarea>
+                                                                 </textarea> --}}
                                                             </div>
 
                                                             <!-- Edit Personal Info -->

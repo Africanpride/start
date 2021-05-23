@@ -40,10 +40,15 @@
                     </ul>
                     @endif
 
+
+
+
+
                     <form method="POST" action="{{ route('articles.update', $article->slug) }}" id="edit_article_form"
                         name="edit_article_form" accept-charset="UTF-8" class="form-horizontal"  enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <input name="_method" type="hidden" value="PUT">
+
                         @include ('articles.form', [
                         'article' => $article,
                         ])
@@ -56,6 +61,9 @@
                             </div>
                         </div>
                     </form>
+
+
+
 
                 </div>
             </div>

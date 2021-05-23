@@ -17,6 +17,10 @@ class User extends Authenticatable
      *
      * @var array
      */
+    public function getFullNameAttribute() {
+        return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
+    }
+
     protected $fillable = [
         'first_name',
         'last_name',

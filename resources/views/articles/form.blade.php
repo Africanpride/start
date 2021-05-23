@@ -11,13 +11,14 @@
 
 {{-- <textarea id="full-editor" class="mb-30 pb-20 col-md-9" name="content"  tinymce-editor></textarea> --}}
 
+
 <div class="textarea p-30">
     <textarea id="full-editor" name="content" rows="5" cols="40" class="form-control tinymce-editor mb-40 pb-40 col-md-9">{!! old('content', optional($article)->content) !!}</textarea>
 </div>
 <div class="textarea  p-30">
     <textarea name ="notes" id="textarea1" class="theme-input-style style--seven" placeholder="Type Article Notes Notes Here">{!! old('notes', optional($article)->notes) !!}</textarea>
 </div>
-<div class="col-12 file-repeater mt-3">
+{{-- <div class="col-12 file-repeater mt-3">
     <div data-repeater-list="images">
         <div data-repeater-item>
             <div class="row mb-20">
@@ -26,7 +27,7 @@
                     <div class="attach-file style--three">
                         <div class="upload-button">
                             Add a Featured Image
-                            <input class="file-input" type="file" name="image" value="{{ old('image') }}" value="{{ old('image') }}">
+                            <input class="file-input" type="file" name="image" value="{{ old('image') }}">
                         </div>
                     </div>
                     <label class="file_upload ml-2">No file added</label>
@@ -48,5 +49,8 @@
         </button>
         <span class="bold c2 ml-1">Add New</span>
     </div>
-</div>
+</div> --}}
+
+@include ('articles.image-upload')
+
 

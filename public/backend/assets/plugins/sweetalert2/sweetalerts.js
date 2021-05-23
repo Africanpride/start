@@ -11,6 +11,102 @@ Author url    :  http://themelooks.com
 
 $(function() {
     'use strict';
+    function deleteConfirmation(id) {
+
+        swal.fire({
+
+            title: "Delete?",
+
+            text: "Please ensure and then confirm!",
+
+            type: "warning",
+
+            showCancelButton: !0,
+
+            confirmButtonText: "Yes, delete it!",
+
+            cancelButtonText: "No, cancel!",
+
+            reverseButtons: !0
+
+        }).then(function (e) {
+
+
+            if (e.value === true) {
+
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+
+                $.ajax({
+
+                    type: 'POST',
+
+                    url: "{{url('/users')}}/" + id,
+
+                    data: {_token: CSRF_TOKEN},
+
+                    dataType: 'JSON',
+
+                    success: function (results) {
+
+
+                        if (results.success === true) {
+
+                            swal("Done!", results.message, "success");
+
+                        } else {
+
+                            swal("Error!", results.message, "error");
+
+                        }
+
+                    }
+
+                });
+
+
+            } else {
+
+                e.dismiss;
+
+            }
+
+
+        }, function (dismiss) {
+
+            return false;
+
+        })
+
+    }
+
+
+    $('.delete-confirm').click(function(event) {
+        var form = document.getElementById('#form');
+        // var form =  $(this).closest("form");
+        var name = $(this).data("name");
+        event.preventDefault();
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            type: "warning",
+            showCancelButton: !0,
+            showCconfirmButton: !0,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+            confirmButtonClass: "btn long",
+            cancelButtonClass: "btn long bg-danger ml-1",
+            buttonsStyling: !1,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            form.submit();
+          } else {
+              form.cancel();
+          }
+        });
+    });
 
     $(document).ready(function () {
         $("#basic-alert").on("click", function () {

@@ -64,7 +64,8 @@
                           <li class="d-none d-lg-flex">
                              <!-- Main Header Button -->
                              <div class="main-header-btn ml-md-1">
-                                <a href="{{ route('articles.create')}}" class="btn"> <img src="{{ asset('backend/assets/img/svg/plus_white.svg') }}" alt="" class="svg mr-1"> Create New Article</a>
+                                <a href="{{ route('articles.create')}}" class="btn">
+                                    <img src="{{ asset('backend/assets/img/svg/plus_white.svg') }}" alt="" class="svg mr-1"> Create New Article</a>
                              </div>
                              <!-- End Main Header Button -->
                           </li>
@@ -73,16 +74,16 @@
                             <!-- Main Header Language -->
                             <div class="main-header-language">
                                <a href="#" data-toggle="dropdown">
-                                  <img src = " {{ asset('backend/assets/img/svg/globe-icon.svg ') }}" alt="">
+                                  <img src = "{{ asset('backend/assets/img/svg/globe-icon.svg ') }}" alt="">
                                </a>
                                <div class="dropdown-menu style--three">
                                   <a href="#">
-                                     <span><img src = " {{ asset('backend/assets/img/usa.png') }}" alt=""></span>
+                                     <span><img src = "{{ asset('backend/assets/img/usa.png') }}" alt=""></span>
                                      English
                                   </a>
 
                                   <a href="#">
-                                     <span><img src = " {{ asset('backend/assets/img/france.png') }}" alt=""></span>
+                                     <span><img src = "{{ asset('backend/assets/img/france.png') }}" alt=""></span>
                                      French
                                   </a>
 

@@ -8,29 +8,40 @@
   <!-- End wrapper -->
 
   <!-- ======= BEGIN GLOBAL MANDATORY SCRIPTS ======= -->
-  <script src="{{ asset('backend/assets/js/jquery.min.js') }}"></script>
-  <script src=" {{ asset('backend/assets/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <script src=" {{ asset('backend/assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}">
+  <script src="{{ asset('/backend/assets/js/app.js') }}"></script>
+  <script src="{{ asset('/backend/assets/js/jquery.min.js') }}"></script>
+  <script src=" {{ asset('/backend/assets/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src=" {{ asset('/backend/assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}">
   </script>
-  <script src="{{ asset('backend/assets/js/script.js') }}"></script>
+  <script src="{{ asset('/backend/assets/js/script.js') }}"></script>
+  <script src="{{ asset('/backend/assets/js/app.js') }}"></script>
   <!-- ======= BEGIN GLOBAL MANDATORY SCRIPTS ======= -->
 
   {{-- <script src="  {{ asset('public/js/app.js') }}"></script> --}}
 
   <!-- ======= BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
-  <script src="  {{ asset('backend/assets/plugins/apex/apexcharts.min.js') }}"></script>
-  <script src="  {{ asset('backend/assets/plugins/apex/custom-apexcharts.js') }}"></script>
+  <script src="  {{ asset('/backend/assets/plugins/apex/apexcharts.min.js') }}"></script>
+  <script src="  {{ asset('/backend/assets/plugins/apex/custom-apexcharts.js') }}"></script>
   <!-- ======= End BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
 
   <!-- ======= BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
-  <script src="  {{ asset('backend/assets/plugins/dropzone/dropzone.min.js') }}"></script>
-  <script src="  {{ asset('backend/assets/plugins/dropzone/dropzone.custom.js') }}"></script>
-  <script src="  {{ asset('backend/assets/plugins/dropzone/dropzone.new.js') }}"></script>
+  <script src="  {{ asset('/backend/assets/plugins/dropzone/dropzone.min.js') }}"></script>
+  <script src="  {{ asset('/backend/assets/plugins/dropzone/dropzone.custom.js') }}"></script>
+  <script src="  {{ asset('/backend/assets/plugins/dropzone/dropzone.new.js') }}"></script>
 
      <!-- ======= BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
-     <script src=" {{ asset('backend/assets/plugins/jquery-repeater/repeater.min.js ' ) }}"></script>
-     <script src=" {{ asset('backend/assets/plugins/jquery-repeater/custom-repeater.js ' ) }}"></script>
+     <script src=" {{ asset('/backend/assets/plugins/jquery-repeater/repeater.min.js ' ) }}"></script>
+     <script src=" {{ asset('/backend/assets/plugins/jquery-repeater/custom-repeater.js ' ) }}"></script>
      <!-- ======= End BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
+
+     <script src="{{ asset('/backend/assets/js/custom.project.management.js') }}"></script>
+     <script id="dsq-count-scr" src="//sktaeroshutter.disqus.com/count.js" async></script>
+
+       <!-- ======= BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
+   <script src=" {{ asset('/backend/assets/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
+   <script src=" {{ asset('/backend/assets/plugins/sweetalert2/sweetalerts.js') }}"></script>
+   <!-- ======= End BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
+
 
   {{-- <script src="https://cdn.quilljs.com/1.0.5/quill.min.js" type="text/javascript"></script> --}}
   {{-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> --}}
@@ -44,85 +55,7 @@
 
   @stack('scripts')
 
-  {{-- <script>
-          var toolbarOptions = [
-              ['bold', 'italic', 'underline', 'strike'], // toggled buttons
-              ['blockquote', 'code-block'],
-
-              [{
-                  'header': 1
-              }, {
-                  'header': 2
-              }], // custom button values
-              [{
-                  'list': 'ordered'
-              }, {
-                  'list': 'bullet'
-              }],
-              [{
-                  'indent': '-1'
-              }, {
-                  'indent': '+1'
-              }], // outdent/indent
-
-              [{
-                  'size': ['small', false, 'large', 'huge']
-              }], // custom dropdown
-              [{
-                  'header': [1, 2, 3, 4, 5, 6, false]
-              }],
-
-              [{
-                  'color': []
-              }, {
-                  'background': []
-              }], // dropdown with defaults from theme
-              [{
-                  'font': []
-              }],
-              [{
-                  'align': []
-              }],
-
-          ];
-
-          var quill = new Quill('#full-editor', {
-              modules: {
-                  toolbar: toolbarOptions
-              },
-              theme: 'snow'
-          });
-
-          quill.on('text-change', function (delta, oldDelta, source) {
-              document.getElementById("quill_html").value = quill.root.innerHTML;
-          });
-
-      </script> --}}
-      <script src="https://cdn.tiny.cloud/1/thd22130oevp2gpc0tmr02w6v9g1wi5pn06lnbm6dm78g0bj/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-  {{-- <script>
-      tinymce.init({
-          selector: '#full-editor',
-        //   inline: true,
-          height: 700,
-          plugins: [
-              'advlist autolink link image lists charmap print preview hr anchor pagebreak',
-              'searchreplace wordcount visualblocks code fullscreen insertdatetime media nonbreaking',
-              'table emoticons template paste help'
-          ],
-          toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | ' +
-              'bullist numlist outdent indent | link image | print preview media fullpage | ' +
-              'forecolor backcolor emoticons | help',
-          menu: {
-              favs: {
-                  title: 'My Favorites',
-                  items: 'code visualaid | searchreplace | emoticons'
-              }
-          },
-          menubar: 'favs file edit view insert format tools table help',
-          content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-      });
-
-  </script> --}}
+<script src="https://cdn.tiny.cloud/1/thd22130oevp2gpc0tmr02w6v9g1wi5pn06lnbm6dm78g0bj/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
 <script>
   var editor_config = {

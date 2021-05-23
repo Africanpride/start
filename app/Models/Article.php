@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
-use App\Models\Article_Image;
+// use App\Models\Article_Image;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
@@ -80,9 +80,14 @@ class Article extends Model implements HasMedia
         return $this->belongsTo(User::class);
     }
 
-    public function images() {
-        return $this->hasMany(Article_Image::class);
+    // public function images() {
+    //     return $this->hasMany(Article_Image::class);
+    // }
+
+    public function comments() {
+        return $this->hasMany(Comment::class);
     }
+
     public function getRouteKeyName()
     {
         return 'slug';

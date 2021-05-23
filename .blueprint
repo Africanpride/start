@@ -1,0 +1,18 @@
+created:
+    - app/Http/Controllers/CommentController.php
+    - database/factories/CommentFactory.php
+    - database/migrations/2021_05_13_100505_create_comments_table.php
+    - app/Comment.php
+    - tests/Feature/Http/Controllers/CommentControllerTest.php
+    - app/Events/Newcomment.php
+    - app/Http/Requests/CommentStoreRequest.php
+    - app/Jobs/SyncMedia.php
+    - app/Mail/Reviewcomment.php
+    - app/Mail/SupportcommentDeleted.php
+    - app/Notification/Reviewcomment.php
+    - resources/views/comment/index.blade.php
+    - resources/views/comment/create.blade.php
+updated:
+    - routes/web.php
+models:
+    Comment: { comment_id: 'id foreign', content: 'longtext:400', published_at: 'nullable timestamp' }

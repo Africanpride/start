@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class ServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,6 @@ class ProductController extends Controller
     public function index()
     {
         //
-        return view('products.index');
     }
 
     /**
@@ -26,7 +25,6 @@ class ProductController extends Controller
     public function create()
     {
         //
-        return view('products.create');
     }
 
     /**
@@ -43,35 +41,33 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Service $service)
     {
         //
-        return view('products.show');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Service $service)
     {
         //
-        return view('products.edit');
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Service $service)
     {
         //
     }
@@ -79,10 +75,10 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Service $service)
     {
         //
     }

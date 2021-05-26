@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="panel panel-default">
-  
+
         <div class="panel-heading clearfix">
 
             <div class="pull-left">
@@ -20,7 +20,7 @@
                 </a>
 
             </div>
-        </div>
+         </div>
 
         <div class="panel-body">
 

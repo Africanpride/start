@@ -32,7 +32,7 @@ class ProductCategory extends Model
     //     $this->hasMany(Product::class);
     // }
     public function products() {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class)->withTimestamps();
     }
 
     public function registerMediaCollections(): void    {

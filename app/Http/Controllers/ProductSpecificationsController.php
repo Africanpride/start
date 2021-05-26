@@ -14,7 +14,7 @@ class ProductSpecificationsController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**

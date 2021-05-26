@@ -73,6 +73,8 @@ require __DIR__.'/auth.php';
 
 // Resourceful Controllers
 Route::resource('articles', 'ArticleController');
+Route::resource('products', 'ProductController');
+Route::resource('services', 'ServiceController');
 Route::resource('business', 'BusinessController');
 
 Route::get('seo', 'BusinessController@index')->name('seo');

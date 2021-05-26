@@ -4,44 +4,35 @@ namespace App\Models;
 
 use Spatie\Image\Manipulations;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Product extends Model
+class Service extends Model
 {
-    use HasFactory, InteractsWithMedia ;
+    use HasFactory;
 
-    protected $table = 'products';
+    protected $table = 'service';
 
     protected $fillable = [
         'name',
-        'description',
+        'description'
     ];
 
     protected $dates = [
         'deleted_at'
     ];
 
-    // public function getRouteKeyName()
-    // {
-    //     return 'id';
+    // public function characteristics() {
+    //     $this->hasMany(ServiceSpecs::class);
     // }
-
-    public function specifications() {
-        $this->hasMany(ProductSpecifications::class);
-    }
-    public function categories() {
-        return $this->belongsToMany(ProductCategory::class)->withTimestamps();
-    }
 
     public function registerMediaCollections(): void    {
 
-        $this->addMediaCollection('avatar')
-            ->singleFile()
-            ->useFallbackUrl('/backend/assets/img/avatar/avatar.jpg')
-            ->useFallbackPath(public_path('/backend/assets/img/avatar/avatar.jpg'));
+        // $this->addMediaCollection('avatar')
+        //     ->singleFile()
+        //     ->useFallbackUrl('/backend/assets/img/avatar/avatar.jpg')
+        //     ->useFallbackPath(public_path('/backend/assets/img/avatar/avatar.jpg'));
 
-        $this->addMediaCollection('category_image')
+        $this->addMediaCollection('service_image')
             // ->withResponsiveImages()
             ->singleFile();
 
@@ -64,4 +55,6 @@ class Product extends Model
             ->sepia()
             ->border(10, 'black', Manipulations::BORDER_OVERLAY);
   }
+
+
 }

@@ -17,7 +17,7 @@ class CreateProfilesTable extends Migration
         {
             $table->id();
             $table->uuid('uuid')->unique();
-            $table->string('bio', 255)->nullable();
+            $table->longtext('bio', 255)->nullable();
             $table->string('address1')->nullable();
             $table->string('address2')->nullable();
             $table->string('post_code')->nullable();

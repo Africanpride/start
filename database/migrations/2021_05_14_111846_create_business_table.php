@@ -19,6 +19,10 @@ class CreateBusinessTable extends Migration
             $table->longtext('business_description')->nullable();
             $table->string('business_email')->nullable();
             $table->string('business_number')->nullable();
+            $table->string('linkedin_handle')->nullable();
+            $table->string('twitter_handle')->nullable();
+            $table->string('facebook_handle')->nullable();
+            $table->string('youtube_handle')->nullable();
             $table->text('seo_keywords')->nullable();
             $table->timestamps();
         });

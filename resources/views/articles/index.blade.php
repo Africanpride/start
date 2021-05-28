@@ -55,7 +55,7 @@
                             <thead>
                                 <tr>
                                     <th>{{ __('Articles') }}</th>
-                                    <th>{{ trans('Author') }}</th>
+                                    {{-- <th>{{ trans('Author') }}</th> --}}
 
 
                                     <th></th>
@@ -71,10 +71,11 @@
                                         </a><br>
                                         {{ Str::limit( $article->content, 200, ' (...)')  }} <br>
                                         <span class="full-date mt-3 font-italic"> {{ ($article->created_at)->toRfc850String()  ?? 'Date'}}</span>
+                                        <span class="full-date mt-3 font-italic"> <i class="icofont-labour"> </i>{{ trans('Author') }}: {{ optional($article->user)->full_name }}</span>
                                     </td>
-                                    <td>{{ optional($article->user)->first_name }}</td>
+                                    {{-- <td>{{ optional($article->user)->first_name }}</td> --}}
 
-                                    <td>
+                                    <td class="align-middle">
 
                                         <form method="POST" action="{!! route('articles.destroy', $article->slug) !!}"
                                             accept-charset="UTF-8">

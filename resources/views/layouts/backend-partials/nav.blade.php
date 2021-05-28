@@ -27,7 +27,7 @@
                              <span class="link-title">Comments</span>
                          </a>
                      </li>
-                     <li class="{{ Request::routeIs('article.index') ? 'active' : '' }}">
+                     <li class="{{ strpos(url()->current() , 'articles') ? 'active' : '' }}">
                          <a href="{{ route('articles.index')}}">
 
                              <i class="icofont-listing-box"></i>
@@ -35,10 +35,10 @@
                          </a>
                      </li>
                      <li class="{{ strpos(url()->current() , 'products') ? 'active' : '' }}">
-                         <a href="{{ route('articles.index')}}">
+                         <a href="{{ route('products.index')}}">
 
-                             <i class="icofont-listing-box"></i>
-                             <span class="link-title">Product Details</span>
+                            <i class="icofont-vehicle-delivery-van"></i>
+                            <span class="link-title">Product Details</span>
                          </a>
                            <!-- Sub Menu -->
                             <ul class="nav sub-menu">
@@ -49,6 +49,21 @@
                             </ul>
                             <!-- End Sub Menu -->
                      </li>
+                     <li class="{{ strpos(url()->current() , 'services') ? 'active' : '' }}">
+                        <a href="{{ route('articles.index')}}">
+                    
+                            <i class="icofont-architecture-alt"></i>
+                            <span class="link-title">Service Details</span>
+                        </a>
+                          <!-- Sub Menu -->
+                           <ul class="nav sub-menu">
+                               <li><a href="{{ route('services.index') }}">Available services</a></li>
+                               <li><a href="{{ route('services.create') }}">Create Service</a></li>
+                               <li><a href="{{ route('services.index') }}">Service Specifications</a></li>
+                               <li><a href="{{ route('services.index') }}">Service Categories</a></li>
+                           </ul>
+                           <!-- End Sub Menu -->
+                    </li>
                      <li class="{{ Request::routeIs('analytics') ? 'active' : '' }}">
                          <a href="{{ route('analytics')}}">
                              <i class="icofont-dashboard-web"></i>

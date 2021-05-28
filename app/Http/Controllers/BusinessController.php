@@ -56,9 +56,6 @@ class BusinessController extends Controller
 
         return redirect()->back()->with('success_message', 'Business Record updated successfully');
 
-
-
-
     }
 
     /**

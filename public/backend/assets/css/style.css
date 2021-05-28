@@ -12459,3 +12459,7 @@ select#locale {
     z-index: 2;
     position: relative;
 }
+
+.color-grey {
+    color: #c4c4c4 !important;
+}

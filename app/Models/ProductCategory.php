@@ -8,12 +8,12 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class ProductCategory extends Model
+class ProductCategory extends Model implements HasMedia
 {
 
     use HasFactory, InteractsWithMedia ;
 
-    protected $table = 'product_categories';
+    protected $table = 'categories';
 
     protected $fillable = [
         'name',

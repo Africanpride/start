@@ -103,18 +103,10 @@
                         <div class="content news-card pt-30 font-17 ">{!! $article->content !!}</div>
                     </div>
 
-                    <div class="post-footer d-flex mb-20 mt-20 pt-20 pb-3 border-bottom">
+                    <div class="post-footer d-flex mb-20 mt-20 pt-20 pb-3 border-bottom display-none ">
 
-                        <!-- Love -->
-                        <div class="love d-flex align-items-center">
-                            <div class="icon">
-                                <img src=" {{ asset('backend/assets/img/svg/love.svg' ) }} " alt="" class="svg">
-                            </div>
-                            <div class="content">
-                                <span class="mr-1">22</span>Loved
-                            </div>
 
-                        </div>
+                        <livewire:counter />
                         <!-- End Love -->
 
                         <!-- Comment -->

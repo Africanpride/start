@@ -73,7 +73,10 @@ require __DIR__.'/auth.php';
 
 // Resourceful Controllers
 Route::resource('articles', 'ArticleController');
+// Route::post('/category', 'ProductController@ProductCategory')->name('category');
+
 Route::resource('products', 'ProductController');
+Route::resource('category', 'ProductCategoryController');
 Route::resource('services', 'ServiceController');
 Route::resource('business', 'BusinessController');
 

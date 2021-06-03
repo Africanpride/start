@@ -38,16 +38,16 @@
             <!-- Touchspin -->
             <div class="form-element touchspin mb-30">
                 <!-- Form -->
-                <form method="POST" action="{{ route('business.store'), $business->id }}" id="testForm"
+                <form method="POST" action="{{ route('business.store'), $business->id ?? '' }}" id="testForm"
                     accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                    {{ csrf_field() }}
+                    @csrf
 
                     <!-- Form Group -->
                     <div class="form-group mb-4">
                         <label for="textarea1"
                             class="font-16 bold black mb-10">{{__('Please provide a description of your business or organization here.')}}</label>
                         <textarea id="textarea1" name="business_description" class="theme-input-style style--seven"
-                            placeholder="{{ __($business->business_description ?? 'Business/Organization description here.')}}">{{ old('business_description', optional($business)->business_description) }}</textarea>
+                            placeholder="{{ $business->business_description ?? __('Business/Organization description here.')}}">{{ old('business_description', optional($business)->business_description) }}</textarea>
 
                     </div>
                     <!-- End Form Group -->

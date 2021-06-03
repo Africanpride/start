@@ -10,13 +10,13 @@
                 <div class="d-flex justify-content-between mb-3 align-items-center">
                     <h4 class="aside-btn-text c1 d-xl-flex align-items-center">Users Table</h4>
 
-                    <form action="#" class="search-form col-7 col-xl-7 ">
+                    <div class="search-form col-7 col-xl-7 ">
                         <div class="theme-input-group">
-                           <input type="text" class="theme-input-style" placeholder="Search Here">
+                            @livewire('search-users')
 
-                           <button type="submit"><img src="{{ asset('/backend/assets/img/svg/search-icon.svg') }}" alt="" class="svg"></button>
+                           {{-- <button type="submit"><img src="{{ asset('/backend/assets/img/svg/search-icon.svg') }}" alt="" class="svg"></button> --}}
                         </div>
-                     </form>
+                     </div>
 
 
                     <div class="btn">Add New User</div>

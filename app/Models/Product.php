@@ -26,6 +26,9 @@ class Product extends Model
     // {
     //     return 'id';
     // }
+    public function getPriceSymbolAttribute (): string {
+        return 'GHS';
+    }
 
     public function specifications() {
         $this->hasMany(ProductSpecifications::class);

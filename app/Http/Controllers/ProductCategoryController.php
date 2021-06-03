@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ProductCategory;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\ProductCategory;
+use Illuminate\Support\Facades\Auth;
 
 class ProductCategoryController extends Controller
 {
@@ -35,7 +37,32 @@ class ProductCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validate
+        $request->validate([
+            'name' => 'required|unique:categories|max:255',
+            'description' => 'string|min:1|nullable',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        // dd($request->all());
+
+        $user_id = Auth::user()->id;
+        $name     =  $request->name;
+        $slug      =  Str::slug($request->name);
+        $description   =  $request->description;
+        $file = $request->file('image');
+
+        // Ok. Validated. everything is solid.
+
+        $category = ProductCategory::create([
+            'name'     =>  $name,
+            'slug'      =>  $slug,
+            'description'   =>  $description
+            ]);
+
+        if ($request->hasfile('image'))  {
+            $category->addMediaFromRequest('image')->toMediaCollection('category_image');
+        }
+        return redirect()->route('products.create')->with('success_message', trans('Category: '. '<b>' . $category->name .  '</b>'. ' Added Successfully'));
     }
 
     /**

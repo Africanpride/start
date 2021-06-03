@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\ProductCategory;
 
 class ProductController extends Controller
 {
@@ -23,10 +25,13 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+
+    public function create(Product $product)
     {
         //
-        return view('products.create');
+        $products = Product::all();
+        $categories = ProductCategory::all();
+        return view('products.create', compact('product', 'categories'));
     }
 
     /**
@@ -49,7 +54,9 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         //
-        return view('products.show');
+        $product = Product::find($product->id)->first();
+        return view('products.show', compact('product'));
+
     }
 
     /**

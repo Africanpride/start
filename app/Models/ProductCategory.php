@@ -17,6 +17,7 @@ class ProductCategory extends Model implements HasMedia
 
     protected $fillable = [
         'name',
+        'slug',
         'description',
     ];
 
@@ -32,7 +33,7 @@ class ProductCategory extends Model implements HasMedia
     //     $this->hasMany(Product::class);
     // }
     public function products() {
-        return $this->belongsToMany(Product::class)->withTimestamps();
+        return $this->belongsToMany(Product::class, 'category_product', 'category_id', 'product_id')->withTimestamps();
     }
 
     public function registerMediaCollections(): void    {

@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductCategoryController extends Controller
 {
@@ -17,6 +18,7 @@ class ProductCategoryController extends Controller
     public function index()
     {
         //
+        return view('products.create');
     }
 
     /**
@@ -42,6 +44,9 @@ class ProductCategoryController extends Controller
             'name' => 'required|unique:categories|max:255',
             'description' => 'string|min:1|nullable',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ],
+        $messages = [
+            'name.unique' => 'Category name must be unique.',
         ]);
         // dd($request->all());
 
@@ -62,7 +67,10 @@ class ProductCategoryController extends Controller
         if ($request->hasfile('image'))  {
             $category->addMediaFromRequest('image')->toMediaCollection('category_image');
         }
-        return redirect()->route('products.create')->with('success_message', trans('Category: '. '<b>' . $category->name .  '</b>'. ' Added Successfully'));
+
+        // return redirect()->route('products.create')->with('success_message', trans('Category: '. '<b>' . $category->name .  '</b>'. ' Added Successfully'));
+
+        return redirect()->route('products.categories')->with('toast_success', trans($category->name . ' Added Successfully'));
     }
 
     /**
@@ -85,6 +93,8 @@ class ProductCategoryController extends Controller
     public function edit(ProductCategory $productCategory)
     {
         //
+
+        dd('You just hit edit in controller');
     }
 
     /**
@@ -94,9 +104,31 @@ class ProductCategoryController extends Controller
      * @param  \App\Models\ProductCategory  $productCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProductCategory $productCategory)
+    public function update(Request $request, $category)
     {
         //
+        $request->validate([
+            'name' => 'required|unique:categories|max:255',
+            'description' => 'string|min:1|nullable',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ],
+        $messages = [
+            'name.unique' => 'Category name must be unique.',
+        ]);
+
+        $category = ProductCategory::findOrFail($category);
+
+        $name           =  $request->name;
+        $description    =  $request->description;
+        $slug           =  Str::slug($request->name);
+
+        $category->update([
+            'name' => $name,
+            'description' => $description,
+            'slug' => $slug,
+        ]);
+
+        return redirect()->back()->with('toast_success', trans($category->name . ' Updated Successfully'));
     }
 
     /**
@@ -105,8 +137,11 @@ class ProductCategoryController extends Controller
      * @param  \App\Models\ProductCategory  $productCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductCategory $productCategory)
+    public function destroy($id)
     {
         //
+        $category = ProductCategory::findOrFail($id);
+        $category->delete();
+        return back()->with('toast_success', trans($category->name . ' Deleted Successfully'));
     }
 }

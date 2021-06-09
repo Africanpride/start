@@ -3,9 +3,14 @@
       All Rights Reserved. © {{ now()->year }} <a href="{{ config('app.url') }}"> -
           {{ config('app.name') }} </a>
   </footer>
+
   <!-- End Footer -->
   </div>
   <!-- End wrapper -->
+   {{-- <!-- ======= BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
+   <script src="  {{ asset('/backend/assets/plugins/toastr/toastr.min.js') }}"></script>
+   <script src="  {{ asset('/backend/assets/plugins/toastr/toastr.js') }}"></script>
+   <!-- ======= End BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= --> --}}
 
   <!-- ======= BEGIN GLOBAL MANDATORY SCRIPTS ======= -->
   <script src="{{ asset('/backend/assets/js/app.js') }}"></script>
@@ -42,13 +47,7 @@
    <script src=" {{ asset('/backend/assets/plugins/sweetalert2/sweetalerts.js') }}"></script>
    <!-- ======= End BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
 
-
-  {{-- <script src="https://cdn.quilljs.com/1.0.5/quill.min.js" type="text/javascript"></script> --}}
-  {{-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> --}}
-
-
   <!-- ======= End BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS ======= -->
-
   @stack('modals')
 
   @livewireScripts

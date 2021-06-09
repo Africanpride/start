@@ -89,7 +89,7 @@ class ArticleController extends Controller
             $article->addMediaFromRequest('image')->toMediaCollection('featured');
         }
 
-        return redirect()->route('articles.index')->with('success_message', trans('articles.model_was_added'));
+        return redirect()->route('articles.index')->with('toast_success', trans($article->title . ' Added Successfully'));
 
     }
 
@@ -192,9 +192,6 @@ class ArticleController extends Controller
             $article = Article::where('slug', $slug)->first();
             $title = $article->title;
             $article->delete();
-
-            // return redirect()->route('articles.index')
-            //     ->with('success_message', trans('articles.model_was_deleted'));
 
             return redirect()->route('articles.index', $article->slug)->with('success_message','<b> <i>' . $title .  '</i></b>' .  ' is deleted successfully ');
 

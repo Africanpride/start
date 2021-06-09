@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="en">
 
 <head>
    <!-- Page Title -->
@@ -43,6 +43,13 @@
 
    <link rel="stylesheet" href="{{ asset('backend/assets/plugins/dropzone/dropzone.min.css')  }}">
    <link rel="stylesheet" href="{{ asset('backend/assets/plugins/sweetalert2/sweetalert2.min.css') }}">
+
+   {{-- toaster notification css --}}
+
+   {{-- <link rel="stylesheet" href " {{ asset('/backend/assets/plugins/toastr/toastr.min.css') }}"> --}}
+   {{-- <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"> --}}
+
    @livewireStyles
 
 </head>
+

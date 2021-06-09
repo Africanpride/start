@@ -5,10 +5,11 @@ use App\Models\Article;
 use App\Models\Comment;
 use App\Models\Profile;
 use App\Models\Business;
-use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Spatie\Analytics\Period;
+use App\Models\ProductCategory;
 use Spatie\Analytics\Analytics;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -75,7 +76,14 @@ require __DIR__.'/auth.php';
 Route::resource('articles', 'ArticleController');
 // Route::post('/category', 'ProductController@ProductCategory')->name('category');
 
+Route::get('products.categories', function() {
+    $categories = ProductCategory::all();
+    return view('products.categories', compact('categories'));
+})->name('products.categories');
+
 Route::resource('products', 'ProductController');
+// Route::get('/category/delete/{id}', 'ProductCategoryController')
+//      ->name('category.destroy');
 Route::resource('category', 'ProductCategoryController');
 Route::resource('services', 'ServiceController');
 Route::resource('business', 'BusinessController');

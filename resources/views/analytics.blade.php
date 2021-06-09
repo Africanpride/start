@@ -1,7 +1,22 @@
 @extends('layouts.backend')
 
-{{ dd($analyticsData )}}
+
 @section('content')
+labels: {{ json_encode($analyticsData) }}
+{{-- Country Sessions: {{ json_encode($country_sessions) }} --}}
+{{-- labels: {!! json_encode($dates) !!}, --}}
+
+{{-- {{ $analyticsData }} --}}
+
+{{-- {{ $analyticsData [0]['pageTitle'] }} --}}
+
+{{-- @foreach ($analyticsData  as $data)
+<ul>
+    <li>{{ $data[0]['pageTitle'] }}</li>
+</ul>
+
+
+@endforeach --}}
 
          <!-- Main Content -->
 

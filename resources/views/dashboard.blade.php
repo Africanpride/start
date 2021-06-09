@@ -12,4 +12,5 @@ dashboard
     <a href="#" class="btn s_alert bg-danger-light text-danger mb-10" id="type-error">Error</a>
 </div>
 
+
 @endsection

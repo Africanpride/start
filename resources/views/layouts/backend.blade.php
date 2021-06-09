@@ -27,6 +27,7 @@
          <!-- End Main Content -->
       </div>
       <!-- End Main Wrapper -->
+      @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
       <!-- Footer with scripts -->
      @include('layouts.backend-partials.footer')

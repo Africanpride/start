@@ -198,7 +198,7 @@
                                                             </div>
 
                                                             <input type="text" name="name" class="form-control pl-1"
-                                                                placeholder="Type Category Name">
+                                                                placeholder="Type Category Name" value="{{ old('name') }}">
                                                         </div>
                                                     </div>
                                                     <!-- End Form Group -->
@@ -215,7 +215,7 @@
                                                         </div>
                                                     </div> --}}
                                                     <textarea name="description" class="form-control pl-1" rows="4"
-                                                        placeholder="Type in category Description"></textarea>
+                                                        placeholder="Type in category Description" value="{{ old('description') }}"></textarea>
                                             </div>
                                         </div>
                                         <!-- End Form Group -->

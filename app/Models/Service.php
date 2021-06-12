@@ -10,20 +10,31 @@ class Service extends Model
 {
     use HasFactory;
 
-    protected $table = 'service';
+    public $table = 'services';
 
     protected $fillable = [
         'name',
-        'description'
+        'slug',
+        'description',
+        'comment',
+        'user_id',
     ];
 
     protected $dates = [
         'deleted_at'
     ];
 
-    // public function characteristics() {
-    //     $this->hasMany(ServiceSpecs::class);
-    // }
+    public function user() {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    public function author() {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function categories() {
+        return $this->belongsToMany(ServiceCategory::class,  'scategory_service',  'service_id', 'scategory_id')
+                    ->withTimestamps();
+    }
 
     public function registerMediaCollections(): void    {
 

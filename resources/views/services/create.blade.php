@@ -5,26 +5,30 @@
     <div class="row h-100">
        <div class="col-12 h-100">
           <!-- Card -->
-          <div class="card h-100">
-             <div class="card-body">
-                <!-- Add New Task -->
-                <form action="#" class="add-new_task">
-                   <!-- Todo Title -->
-                   <h4 class="add-new-title mt-1">{{ __('Add New Service') }}</h4>
-                   <!-- End Todo Title -->
 
-                   <!-- Task Name -->
+          <div class="bg-c2-light profile-widget-header color-indigo ">
+            <h4 class="add-new-title mt-1 d-flex align-items-center"><img src= "{{ asset('/backend/assets/img/svg/calender-color.svg') }}" alt="" class="svg mr-3">
+           {{ __('Add New Service') }}</h4>
+           </div>
+          <div class="card h-100 ">
+             <div class="card-body">
+
+                <!-- Add New Service -->
+                <form method="POST" action="{{ route('services.store')  }}" class="add-new_task" enctype="multipart/form-data">
+                    @csrf
+
+                   <!-- Service Name -->
                    <div class="add_task-name mb-40">
                       <label for="task_name" class="label-text">{{ __('Service Name') }}</label>
-                      <input type="text" id="task_name" class="theme-input-style" placeholder="Type here">
+                      <input type="text" id="service_name" name="name" class="theme-input-style" placeholder="Type here" >
                    </div>
                    <!-- End Task Name -->
 
                    <!-- Todo Actions -->
                    <div class="todo_actions d-flex align-items-center flex-wrap">
-                      <!-- Todo Assaign -->
+                      {{-- <!-- Todo Assaign -->
                       <div class="todo_assaign d-flex align-items-center">
-                            <p class="label-text mb-0 mr-2">Assigned To</p>
+                            <p class="label-text mb-0 mr-2">Manager Assigned To</p>
 
                             <!-- Assign tag -->
                             <div class="assign-tag">
@@ -52,11 +56,11 @@
                             </div>
                             <!-- End Assigned To -->
                       </div>
-                      <!-- End Todo Assaign -->
+                      <!-- End Todo Assaign --> --}}
 
                       <!-- Todo date -->
                       <div class="todo_date d-flex align-items-center">
-                         <p class="label-text mb-0 mr-3">Date</p>
+                         <p class="label-text mb-0 mr-3">Publish Date</p>
 
                          <!-- Date Picker -->
                          <div class="dashboard-date style--three">
@@ -64,7 +68,7 @@
                                <img src=" {{ asset('/backend/assets/img/svg/calender.svg')  }}" alt="" class="svg">
                             </span>
 
-                            <input type="text" id="default-date" placeholder="{{ now()->toFormattedDateString() }}">
+                            <input type="text" id="default-date" name="created_at" placeholder="{{ now()->toFormattedDateString() }}" value="{{ now() }}">
                          </div>
                          <!-- End Date Picker -->
 
@@ -73,7 +77,7 @@
 
                       <!-- Priority Lavel -->
                       <div class="todo_priority d-flex align-items-center">
-                            <p class="label-text mb-0 mr-3">Priority Level</p>
+                            <p class="label-text mb-0 mr-3">Service Category</p>
 
                             <!-- Priority -->
                             <div class="priority">
@@ -94,21 +98,37 @@
 
                    <!-- Add Description -->
                    <div class="add_description mb-4">
-                      <label for="task_description" class="label-text">{{ __('Description')}}</label>
-                      <textarea name="task_description" id="task_description" class="theme-input-style" placeholder="{{ __('Service Description Here ....')}}"></textarea>
+                      <label for="description" class="label-text">{{ __('Description')}}</label>
+                      <textarea name="description" name="description" id="description" class="theme-input-style" placeholder="{{ __('Service Description Here ....')}}"></textarea>
                    </div>
                    <!-- End Add Description -->
 
                    <!-- Add Comment -->
                    <div class="add_comment pt-1 mb-4">
-                      <label for="task_comment" class="label-text"><span class="regular">{{ __('Created By: ')}}</span> &nbsp; {{ Auth()->user()->full_name ?? ' '}}</label>
-                      <textarea name="task_comment" id="task_comment" class="theme-input-style style--two" placeholder="Write your comment here"></textarea>
+                      <label for="comment" class="label-text"><span class="regular">{{ __('Created By: ')}}</span> &nbsp; {{ Auth()->user()->full_name ?? ' '}}</label>
+                      <textarea name="comment" id="comment" class="theme-input-style style--two" placeholder="Write your comment here"></textarea>
                    </div>
-                   <!-- End Add Comment -->
+
+
+
+                   <div class="form-group mb-4">
+                    <label for="exampleSelect2" class="mb-2 black bold d-block">Hold Down CTL on your keyboard to select multiple Categlories</label>
+
+                    <select class="theme-input-style multiple" id="exampleSelect2" name="categories[]" multiple>
+
+                        <option value="">Select Categories Below</option>
+
+                        @foreach ($categories as $category)
+                        <option value="{{$category->id}}">{{$category->name}}</option>
+
+                        @endforeach
+
+                    </select>
+                </div>
 
                    <!-- Add Task Button -->
                    <div class="add-task-btn pt-2 mb-3">
-                      <button class="btn" type="submit">{{ __('Save Service')}}</button>
+                      <button class="btn btn-block" type="submit">{{ __('Save Service')}}</button>
                    </div>
                    <!-- Add Task Button -->
                 </form>

@@ -12463,3 +12463,7 @@ select#locale {
 .color-grey {
     color: #c4c4c4 !important;
 }
+.color-indigo {
+    background-color: #f8f9fa !important;
+    color: #6c757d !important;
+}

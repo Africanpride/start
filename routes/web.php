@@ -8,6 +8,7 @@ use App\Models\Business;
 use Illuminate\Http\Request;
 use Spatie\Analytics\Period;
 use App\Models\ProductCategory;
+use App\Models\ServiceCategory;
 use Spatie\Analytics\Analytics;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Route;
@@ -81,11 +82,17 @@ Route::get('products.categories', function() {
     return view('products.categories', compact('categories'));
 })->name('products.categories');
 
+Route::get('services.categories', function() {
+    $groups = ServiceCategory::all();
+    return view('services.categories', compact('groups'));
+})->name('services.categories');
+
 Route::resource('products', 'ProductController');
-// Route::get('/category/delete/{id}', 'ProductCategoryController')
-//      ->name('category.destroy');
 Route::resource('category', 'ProductCategoryController');
+
 Route::resource('services', 'ServiceController');
+Route::resource('scategory', 'ServiceCategoryController');
+
 Route::resource('business', 'BusinessController');
 
 Route::get('seo', 'BusinessController@index')->name('seo');

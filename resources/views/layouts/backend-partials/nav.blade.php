@@ -60,7 +60,7 @@
                                <li><a href="{{ route('services.index') }}">Available services</a></li>
                                <li><a href="{{ route('services.create') }}">Create Service</a></li>
                                <li><a href="{{ route('services.index') }}">Service Specifications</a></li>
-                               <li><a href="{{ route('services.index') }}">Service Categories</a></li>
+                               <li><a href="{{ route('services.categories') }}">Service Categories</a></li>
                            </ul>
                            <!-- End Sub Menu -->
                     </li>

@@ -18,7 +18,7 @@ class CreateProductSpecificationsTable extends Migration
             $table->text('temperature')->nullable();
             $table->text('height')->nullable();
             $table->text('weight')->nullable();
-            $table->foreignId('product_id')->constrained()->ondelete('cascade')->nullable();
+            $table->foreignId('product_id');
             $table->timestamps();
         });
     }

@@ -15,39 +15,39 @@
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-toggle="modal"
                             data-target="#exampleModalCenter">
-                            Add Product service
+                            Add service Group/Category
                         </button>
                     </span>
                     <span>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#manageservice">
-                            Edit Product service
+                            Edit service Category
                         </button>
 
                     </span>
                     <hr>
-                    @if($services->count() > 0 )
+                    @if($groups->count() > 0 )
 
-                        @foreach($services as $service)
+                        @foreach($groups as $group)
                             <span class="list-unstyled mb-4">
                                 <span class="event">
                                     {{-- <i class="icofont-check"></i> --}}
 
                                 <!-- Button trigger modal -->
                                     <span class="badge badge-primary">
-                                        <a href="" data-toggle="modal" data-target="#manageserviceCrud{{ $service->id }}" class=" text-info ">
-                                            {{ $service->name }}
+                                        <a href="" data-toggle="modal" data-target="#manageserviceCrud{{ $group->id }}" class=" text-info ">
+                                            {{ $group->name }}
                                         </a>
                                     </span>
 
                                 </span>
                             </span>
-                            <div class="modal fade" id="manageserviceCrud{{$service->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                            <div class="modal fade" id="manageserviceCrud{{$group->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
                                 aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title" id="exampleModalLongTitle">Edit service:  {{ $service->name }} </h4>
+                                            <h4 class="modal-title" id="exampleModalLongTitle">Edit service:  {{ $group->name }} </h4>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -59,7 +59,7 @@
                                                     <div class="form-element py-10 vertical-form mb-50">
 
                 <!-- Form -->
-                <form method="POST" action="{{ route('service.update', $service->id ) }}" id="testForm"
+                <form method="POST" action="{{ route('scategory.update', $group->id ) }}" id="testForm"
                     accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
@@ -76,8 +76,8 @@
                                         </div>
                                     </div>
                                     <input type="text" name="name" class="form-control pl-1"
-                                        placeholder="{{ __($service->name ?? 'Product service Name.')}}"
-                                        value="{{ old('name', optional($service)->name) }}">
+                                        placeholder="{{ __($group->name ?? 'Product service Name.')}}"
+                                        value="{{ old('name', optional($group)->name) }}">
                                 </div>
                             </div>
                             <!-- End Form Group -->
@@ -92,8 +92,8 @@
                                         </div>
                                     </div>
                                     <input type="text" name="description" class="form-control pl-1"
-                                        placeholder="{{ __($service->description ?? 'Product service Description.')}}"
-                                        value="{{ old('description', optional($service)->description) }}">
+                                        placeholder="{{ __($group->description ?? 'Product service Description.')}}"
+                                        value="{{ old('description', optional($group)->description) }}">
                                 </div>
                             </div>
                             <!-- End Form Group -->
@@ -111,7 +111,7 @@
 
                 </form>
                 <!-- Form -->
-                <form method="POST" action="{{ route('service.destroy', ['service' => $service->id] ) }}" id="serviceDelete"
+                <form method="POST" action="{{ route('scategory.destroy',  $group->id ) }}" id="serviceDelete"
                     accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                     @csrf
                     @method('DELETE')
@@ -147,7 +147,7 @@
 
                     @else
 
-                        <h2>No Product service Added Yet</h2>
+                        <h2>No service Category Added Yet</h2>
 
                     @endif
 
@@ -159,7 +159,7 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title" id="exampleModalLongTitle">Create Product service</h4>
+                                    <h4 class="modal-title" id="exampleModalLongTitle">Create service Category</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -172,13 +172,13 @@
 
                                                 <!-- Form -->
                                                 <form method="POST"
-                                                    action="{{ route('service.store') }}"
+                                                    action="{{ route('scategory.store') }}"
                                                     id="service_form" accept-charset="UTF-8" class="form-horizontal"
                                                     enctype="multipart/form-data">
                                                     @csrf
                                                     {{-- @include ('articles.image-upload') --}}
                                                     <div class="form-group">
-                                                        <label for="" class="font-14 bold mb-2">service Image</label>
+                                                        <label for="" class="font-14 bold mb-2">Service Category Image</label>
                                                         <input type="file" name="image"
                                                             class="form-control{{ $errors->has('file') ? ' is-invalid' : '' }}">
 
@@ -258,7 +258,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLongTitle">Manage Product service</h4>
+                <h4 class="modal-title" id="exampleModalLongTitle">Manage Service Category</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -269,14 +269,14 @@
                     <div class="col-xl-12 col-md-12 col-xs-12">
                         <div class="form-element py-10 vertical-form mb-50">
 
-                            @if($services->count() > 0 )
+                            @if($groups->count() > 0 )
                             <ul class="list-group">
-                            @foreach($services as $service)
+                            @foreach($groups as $group)
                                 <!-- Message Item List -->
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                      <span>
                                         <div class="delete_mail">
-                                            <form method="POST" action="{{ route('service.destroy',$service->id) }}">
+                                            <form method="POST" action="{{ route('scategory.destroy',$group->id) }}">
                                                 {{ csrf_field() }}
                                                 {{ method_field('delete') }}
                                                 <button type="submit"><img src="{{ asset('backend/assets/img/svg/delete.svg') }}" alt="" class="svg"></button>
@@ -284,15 +284,15 @@
 
                                         </div>
                                     </span>
-                                      <span>{{ $service->name }}</span>
-                                      <span class="badge badge-primary badge-pill">{{ $service->products->count() }}</span>
+                                      <span>{{ $group->name }}</span>
+                                      <span class="badge badge-primary badge-pill">{{ $group->services->count() }}</span>
                                     </li>
                                 <!-- End Message Item List -->
                             @endforeach
                         </ul>
                         @else
 
-                            <h2>No Product service Added Yet</h2>
+                            <h2>No Service Category Added.</h2>
 
                         @endif
                         </div>

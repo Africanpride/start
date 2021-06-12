@@ -8,66 +8,34 @@
           <div class="card h-100">
              <div class="card-body">
                 <!-- Add New Task -->
-                <form action="#" class="add-new_task">
+                <div class="task-details">
                    <!-- Todo Title -->
-                   <h4 class="add-new-title mt-1">Add New Task</h4>
+                   <h4 class="add-new-title style--two mt-1">For detracty charmed add talking age. Shy resolution instrument unreserved man few.</h4>
                    <!-- End Todo Title -->
 
-                   <!-- Task Name -->
-                   <div class="add_task-name mb-40">
-                      <label for="task_name" class="label-text">Task Name</label>
-                      <input type="text" id="task_name" class="theme-input-style" placeholder="Type here">
-                   </div>
-                   <!-- End Task Name -->
-
                    <!-- Todo Actions -->
-                   <div class="todo_actions d-flex align-items-center flex-wrap">
+                   <div class="todo_actions d-flex align-items-center flex-wrap mb-2">
                       <!-- Todo Assaign -->
                       <div class="todo_assaign d-flex align-items-center">
                             <p class="label-text mb-0 mr-2">Assigned To</p>
 
                             <!-- Assign tag -->
-                            <div class="assign-tag">
+                            <div class="assign-tag front-end">
                                <div class="tag-text font-12">Front-End</div>
-                               <img src=" {{ asset('/backend/assets/img/avatar/info-avatar.png')  }}" alt="" class="assign-avatar">
+                               <img src= "{{ asset('backend/assets/img/avatar/info-avatar.png')  }}" alt="" class="assign-avatar">
+                            </div>
+                            <div class="assign-tag back-end">
+                               <div class="tag-text font-12">Back-End</div>
+                               <img  src=" {{ asset('backend/assets/img/avatar/m3.png')  }}" alt="" class="assign-avatar">
                             </div>
                             <!-- End Assign tag -->
-
-                            <!-- Assigned To -->
-                            <div class="assigned-to">
-                               <a href="#" class="assign-btn ml-2" data-toggle="dropdown">
-                                  <img src=" {{ asset('/backend/assets/img/svg/plus.svg')  }}" alt="" class="svg">
-                               </a>
-                               <div class="dropdown-menu style--four">
-                                  <a href="#">Back End</a>
-                                  <a href="#">Chaya Cline</a>
-                                  <a href="#">Talia Guerrero</a>
-                                  <a href="#">Oran Wilkins</a>
-                                  <a href="#">Ryley Bryan</a>
-                                  <a href="#" class="selected">Front-End</a>
-                                  <a href="#">Eoin French</a>
-                                  <a href="#">Wilson Norris</a>
-                                  <a href="#">Kirstin Power</a>
-                               </div>
-                            </div>
-                            <!-- End Assigned To -->
                       </div>
                       <!-- End Todo Assaign -->
 
                       <!-- Todo date -->
                       <div class="todo_date d-flex align-items-center">
                          <p class="label-text mb-0 mr-3">Date</p>
-
-                         <!-- Date Picker -->
-                         <div class="dashboard-date style--three">
-                            <span class="input-group-addon">
-                               <img src=" {{ asset('/backend/assets/img/svg/calender.svg')  }}" alt="" class="svg">
-                            </span>
-
-                            <input type="text" id="default-date" placeholder="28 October 2019">
-                         </div>
-                         <!-- End Date Picker -->
-
+                        <span class="show-date"><img {{ asset('backend/assets/img/svg/calender.svg') }} " alt="" class="svg"> 28 October 2019</span>
                       </div>
                       <!-- End Todo date -->
 
@@ -77,14 +45,7 @@
 
                             <!-- Priority -->
                             <div class="priority">
-                               <a href="#" class="assign-menu bold font-14" data-toggle="dropdown">Not Important</a>
-                               <div class="dropdown-menu style--five">
-                                  <a href="#"><span class="tag_color urgent"></span>Urgent</a>
-                                  <a href="#"><span class="tag_color important"></span>Important</a>
-                                  <a href="#"><span class="tag_color not_important"></span>Not Important</a>
-                                  <a href="#"><span class="tag_color not_urgent"></span>Not Urgent</a>
-                                  <a href="#"><span class="tag_color average"></span>Average</a>
-                               </div>
+                               <p class="assign-menu bold font-14">Not Important</p>
                             </div>
                             <!-- End Priority -->
                       </div>
@@ -92,26 +53,26 @@
                    </div>
                    <!-- End Todo Actions -->
 
-                   <!-- Add Description -->
-                   <div class="add_description mb-4">
-                      <label for="task_description" class="label-text">Description</label>
-                      <textarea name="task_description" id="task_description" class="theme-input-style" placeholder="Type here"></textarea>
+                   <!-- Description -->
+                   <div class="description mb-4">
+                      <p class="label-text mb-2">Description</p>
+                      <p>In consequat, quam id sodales hendrerit, eros mi molestie leo, nec lacinia risus neque tristique augue. Proin tempus urna vel congue elementum. Vestibulum euismod accumsan dui, ac iaculis sem viverra eu. Donec convallis, elit vitae ornare cursus, libero purus facilisis felis, a volutpat metus tortor bibendum elit. Integer nec mi eleifend, fermentum lorem vitae, finibus neque. Cras accumsan pretium dignissim. Curabitur a orci lorem. Phasellus tempor dolor vel odio efficitur, ac sollicitudin ipsum feugiat. Proin feugiat aliquet turpis, et rhoncus nibh elementum quis.</p>
                    </div>
-                   <!-- End Add Description -->
+                   <!-- End Description -->
 
                    <!-- Add Comment -->
                    <div class="add_comment pt-1 mb-4">
-                      <label for="task_comment" class="label-text"><span class="regular">Created By</span> &nbsp; {{ Auth()->user()->full_name }}</label>
-                      <textarea name="task_comment" id="task_comment" class="theme-input-style style--two" placeholder="Write your comment here"></textarea>
+                      <p class="label-text mb-2"><span class="regular">Created By</span> &nbsp; Abrilay Khatun</p>
+                      <p>Task creator's comment show here</p>
                    </div>
                    <!-- End Add Comment -->
 
                    <!-- Add Task Button -->
-                   <div class="add-task-btn pt-2 mb-3">
-                      <button class="btn" type="submit">{{ __('Save Service')}}</button>
+                   <div class="edit-task-btn pt-2 mb-3">
+                      <a href="add-new.html" class="btn">Edit Tasks</a>
                    </div>
                    <!-- Add Task Button -->
-                </form>
+                </div>
                 <!-- End Add New Task -->
              </div>
           </div>

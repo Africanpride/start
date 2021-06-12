@@ -23,7 +23,7 @@
                 <div class="card-body">
                     <h2 class="font-20 mb-3">{{__('Business/Organizational Description')}}</h2>
 
-                    {{ __("Bots are used by search engines such as Google and Bing to crawl web sites, moving from site to site, gathering information about those pages, and indexing them. <br> <br>Following that, algorithms evaluate pages in the index, taking into account hundreds of ranking variables or signals, to decide the order in which pages should appear in search results for a given query. Filling the following will give you a foothold in the SEO space helping your business meet it's target audience. ")}}
+                    {!! __("Bots are used by search engines such as Google and Bing to crawl web sites, moving from site to site, gathering information about those pages, and indexing them. <br> <br>Following that, algorithms evaluate pages in the index, taking into account hundreds of ranking variables or signals, to decide the order in which pages should appear in search results for a given query. Filling the following will give you a foothold in the SEO space helping your business meet it's target audience. ")!!}
 
                 </div>
 

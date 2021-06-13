@@ -112,14 +112,12 @@
 
 
                    <div class="form-group mb-4">
-                    <label for="exampleSelect2" class="mb-2 black bold d-block">Hold Down CTL on your keyboard to select multiple Categlories</label>
+                    <label for="id_label_multiple"  class="mb-2 black bold d-block">Select multiple Categlories</label>
 
-                    <select class="theme-input-style multiple" id="exampleSelect2" name="categories[]" multiple>
-
-                        <option value="">Select Categories Below</option>
+                    <select class="form-control theme-input-style js-example-basic-multiple p-4" id="id_label_multiple" name="categories[]" multiple="true">
 
                         @foreach ($categories as $category)
-                        <option value="{{$category->id}}">{{$category->name}}</option>
+                        <option value="{{$category->id}}" class="p-1">{{$category->name}}</option>
 
                         @endforeach
 

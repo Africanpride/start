@@ -5,47 +5,59 @@
     <div class="row h-100">
        <div class="col-12 h-100">
           <!-- Card -->
-          <div class="card h-100">
+
+          <div class="bg-c2-light profile-widget-header color-indigo ">
+            <h4 class="add-new-title mt-1 d-flex align-items-center"><img src= "{{ asset('/backend/assets/img/svg/calender-color.svg') }}" alt="" class="svg mr-3">
+           {{ __('Add New Service') }}</h4>
+           </div>
+          <div class="card h-100 ">
              <div class="card-body">
-                <!-- Add New Task -->
-                <div class="task-details">
-                   <!-- Todo Title -->
-                   <h4 class="add-new-title style--two mt-1">For detracty charmed add talking age. Shy resolution instrument unreserved man few.</h4>
-                   <!-- End Todo Title -->
+
+                <!-- Add New Service -->
+                <form method="POST" action="{{ route('services.update', $service->id)  }}" class="add-new_task" enctype="multipart/form-data">
+                    @csrf
+
+                   <!-- Service Name -->
+                   <div class="add_task-name mb-40">
+                      <label for="task_name" class="label-text">{{ __('Service Name') }}</label>
+                      <input type="text" id="service_name" name="name" class="theme-input-style" placeholder="{{ $service->name}}" >
+                   </div>
+                   <!-- End Task Name -->
 
                    <!-- Todo Actions -->
-                   <div class="todo_actions d-flex align-items-center flex-wrap mb-2">
-                      <!-- Todo Assaign -->
-                      <div class="todo_assaign d-flex align-items-center">
-                            <p class="label-text mb-0 mr-2">Assigned To</p>
-
-                            <!-- Assign tag -->
-                            <div class="assign-tag front-end">
-                               <div class="tag-text font-12">Front-End</div>
-                               <img src= "{{ asset('backend/assets/img/avatar/info-avatar.png')  }}" alt="" class="assign-avatar">
-                            </div>
-                            <div class="assign-tag back-end">
-                               <div class="tag-text font-12">Back-End</div>
-                               <img  src=" {{ asset('backend/assets/img/avatar/m3.png')  }}" alt="" class="assign-avatar">
-                            </div>
-                            <!-- End Assign tag -->
-                      </div>
-                      <!-- End Todo Assaign -->
+                   <div class="todo_actions d-flex align-items-center flex-wrap">
 
                       <!-- Todo date -->
                       <div class="todo_date d-flex align-items-center">
-                         <p class="label-text mb-0 mr-3">Date</p>
-                        <span class="show-date"><img {{ asset('backend/assets/img/svg/calender.svg') }} " alt="" class="svg"> 28 October 2019</span>
+                         <p class="label-text mb-0 mr-3">Publish Date</p>
+
+                         <!-- Date Picker -->
+                         <div class="dashboard-date style--three">
+                            <span class="input-group-addon">
+                               <img src=" {{ asset('/backend/assets/img/svg/calender.svg')  }}" alt="" class="svg">
+                            </span>
+
+                            <input type="text" id="default-date" name="created_at" placeholder="{{ $service->created_at }}">
+                         </div>
+                         <!-- End Date Picker -->
+
                       </div>
                       <!-- End Todo date -->
 
                       <!-- Priority Lavel -->
                       <div class="todo_priority d-flex align-items-center">
-                            <p class="label-text mb-0 mr-3">Priority Level</p>
+                            <p class="label-text mb-0 mr-3">Service Category</p>
 
                             <!-- Priority -->
                             <div class="priority">
-                               <p class="assign-menu bold font-14">Not Important</p>
+                               <a href="#" class="assign-menu bold font-14" data-toggle="dropdown">Not Important</a>
+                               <div class="dropdown-menu style--five">
+                                  <a href="#"><span class="tag_color urgent"></span>Urgent</a>
+                                  <a href="#"><span class="tag_color important"></span>Important</a>
+                                  <a href="#"><span class="tag_color not_important"></span>Not Important</a>
+                                  <a href="#"><span class="tag_color not_urgent"></span>Not Urgent</a>
+                                  <a href="#"><span class="tag_color average"></span>Average</a>
+                               </div>
                             </div>
                             <!-- End Priority -->
                       </div>
@@ -53,26 +65,38 @@
                    </div>
                    <!-- End Todo Actions -->
 
-                   <!-- Description -->
-                   <div class="description mb-4">
-                      <p class="label-text mb-2">Description</p>
-                      <p>In consequat, quam id sodales hendrerit, eros mi molestie leo, nec lacinia risus neque tristique augue. Proin tempus urna vel congue elementum. Vestibulum euismod accumsan dui, ac iaculis sem viverra eu. Donec convallis, elit vitae ornare cursus, libero purus facilisis felis, a volutpat metus tortor bibendum elit. Integer nec mi eleifend, fermentum lorem vitae, finibus neque. Cras accumsan pretium dignissim. Curabitur a orci lorem. Phasellus tempor dolor vel odio efficitur, ac sollicitudin ipsum feugiat. Proin feugiat aliquet turpis, et rhoncus nibh elementum quis.</p>
+                   <!-- Add Description -->
+                   <div class="add_description mb-4">
+                      <label for="description" class="label-text">{{ __('Description')}}</label>
+                      <textarea name="description" name="description" id="description" class="theme-input-style" placeholder="{{ $service->description }}"></textarea>
                    </div>
-                   <!-- End Description -->
+                   <!-- End Add Description -->
 
                    <!-- Add Comment -->
                    <div class="add_comment pt-1 mb-4">
-                      <p class="label-text mb-2"><span class="regular">Created By</span> &nbsp; Abrilay Khatun</p>
-                      <p>Task creator's comment show here</p>
+                      <label for="comment" class="label-text"><span class="regular">{{ __('Created By: ')}}</span> &nbsp; {{ $service->author->fullName}}</label>
+                      <textarea name="comment" id="comment" class="theme-input-style style--two" placeholder="Write your comment here"></textarea>
                    </div>
-                   <!-- End Add Comment -->
+
+                   <div class="form-group mb-4">
+                    <label for="id_label_multiple"  class="mb-2 black bold d-block">Select multiple Categlories</label>
+
+                    <select class="form-control theme-input-style js-example-basic-multiple p-4" id="id_label_multiple" name="categories[]" multiple="true">
+
+                        @foreach ($service->categories as $category)
+                        <option value="{{$category->id}}" class="p-1">{{$category->name}}</option>
+
+                        @endforeach
+
+                    </select>
+                </div>
 
                    <!-- Add Task Button -->
-                   <div class="edit-task-btn pt-2 mb-3">
-                      <a href="add-new.html" class="btn">Edit Tasks</a>
+                   <div class="add-task-btn pt-2 mb-3">
+                      <button class="btn btn-block" type="submit">{{ __('Save Service')}}</button>
                    </div>
                    <!-- Add Task Button -->
-                </div>
+                </form>
                 <!-- End Add New Task -->
              </div>
           </div>

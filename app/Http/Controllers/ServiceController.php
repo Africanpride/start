@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Service;
 use Illuminate\Support\Str;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Models\ServiceCategory;
 use Illuminate\Support\Facades\Auth;
+
+use function GuzzleHttp\Promise\all;
 
 class ServiceController extends Controller
 {
@@ -49,7 +51,7 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-
+        // dd($request->all());
         // dd($request->input('categories'));
         // validate
         $request->validate([
@@ -62,16 +64,15 @@ class ServiceController extends Controller
 
         $categoryIds    =   $request->categories;
         $name           =   $request->name;
-        $slug           =   Str::slug($request->title);
+        // $slug           =   Str::slug($request->title);
         $description    =   $request->description;
         $comment        =   $request->comment;
         $file           =   $request->file('image');
-        // dd($user_id);
 
         // Ok. Validated. everything is solid.
         $service =  Service::create([
             'name'          =>  $name,
-            'slug'          =>  $slug,
+            'slug'          =>  Str::slug($request->name),
             'description'   =>  $description,
             'comment'       =>  $comment,
             'user_id'       =>  Auth::user()->id
@@ -93,10 +94,12 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function show(Service $service)
+    public function show($id)
     {
         //
-        return view('services.show');
+        $service = Service::find($id);
+        $service2json = $service->toJson();
+        return view('services.show', compact('service', 'service2json'));
 
     }
 
@@ -109,7 +112,7 @@ class ServiceController extends Controller
     public function edit(Service $service)
     {
         //
-        return view('services.edit');
+        return view('services.edit', compact('service'));
 
     }
 

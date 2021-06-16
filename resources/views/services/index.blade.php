@@ -12,8 +12,11 @@
 
                 <ul>
                     <li>
-                        {{ $service->name }} <br>
+                        {{ $service->id }}:
+                        <a href="{{ route('services.show', $service->id) }}"> {{ $service->name }}</a>
+                         <br>
                             @foreach ($service->categories as $category)
+                                {{ $category->id}}:
                                 {{ $category->name}},
                             @endforeach
                     </li>

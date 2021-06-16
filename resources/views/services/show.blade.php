@@ -83,15 +83,15 @@
 
                         <div class="row">
                             <!-- Add Task Button -->
-                            <div class="edit-task-btn pt-2 mb-3 col-xl-6 col-xs-12">
+                            <div class="edit-task-btn pt-2 mb-3 col-xl-6 col-md-6  col-sm-12 col-xs-12">
                                 <a href="{{ route('services.edit', $service->id )}}"
-                                    class="btn">{{ __('Edit Service') }}</a>
+                                    class="btn btn-block">{{ __('Edit Service') }}
+                                </a>
                             </div>
-                            <!-- Add Task Button -->
-                            <!-- Add Task Button -->
-                            <div class="edit-task-btn pt-2 mb-3 col-xl-6 col-xs-12">
-                                <a href="{{ route('services.edit', $service->id )}}"
-                                    class="btn">{{ __('Edit Service') }}</a>
+                            <div class="edit-task-btn pt-2 mb-3 col-xl-6 col-md-6  col-sm-12 col-xs-12">
+                                <a href="{{ route('services.index' )}}"
+                                    class="btn btn-block">{{ __('View All Services') }}
+                                </a>
                             </div>
                             <!-- Add Task Button -->
                         </div>

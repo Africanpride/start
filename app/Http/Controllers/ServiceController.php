@@ -109,10 +109,13 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service)
+    public function edit($id)
     {
         //
-        return view('services.edit', compact('service'));
+        $service =  Service::find($id);
+        $categories = ServiceCategory::pluck('name', 'id')->toArray();
+        // $categories = collect($categories_list);
+        return view('services.edit', compact('service', 'categories'));
 
     }
 
@@ -126,6 +129,10 @@ class ServiceController extends Controller
     public function update(Request $request, Service $service)
     {
         //
+        $service->update($request->all());
+        $service->categories()->sync($request->input('categories'));
+        return redirect()->back()->with('toast_success', trans($service->name . ' Updated Successfully'));
+
     }
 
     /**

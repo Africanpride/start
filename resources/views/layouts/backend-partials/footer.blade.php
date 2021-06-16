@@ -22,6 +22,7 @@
           placeholder: 'Click to Choose a Category',
           allowClear: true,
           theme: 'bootstrap4',
+          class: 'theme-input-style input-wrap d-flex align-items-center flex-wrap w-100',
           // tags: true,
           tokenSeparators: ['/', ',', ';', " "]
       });

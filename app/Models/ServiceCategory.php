@@ -25,10 +25,10 @@ class ServiceCategory extends Model implements HasMedia
         'deleted_at'
     ];
 
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
+    // public function getRouteKeyName()
+    // {
+    //     return 'slug';
+    // }
     // public function Services() {
     //     $this->hasMany(Service::class);
     // }

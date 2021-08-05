@@ -9,6 +9,7 @@ use App\Mail\Reviewcomment;
 use Illuminate\Http\Request;
 use App\Mail\SupportcommentDeleted;
 use Illuminate\Support\Facades\Mail;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\CommentStoreRequest;
 
 class CommentController extends Controller
@@ -20,6 +21,7 @@ class CommentController extends Controller
     public function index(Request $request)
     {
         $comments = Comment::all();
+        // Alert::success('Success Title', 'Success Message');
 
         return view('comment.index', compact('comments'));
     }

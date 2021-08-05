@@ -12467,3 +12467,17 @@ select#locale {
     background-color: #f8f9fa !important;
     color: #6c757d !important;
 }
+
+.no-display {
+    display: none !important;
+}
+.dz-error-message {
+	display: none !important;
+}
+.dz-error-mark {
+	display: none !important;
+}
+
+.delete-cursor {
+    cursor: pointer !important;
+}

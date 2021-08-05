@@ -10706,3 +10706,25 @@ h3 {
 .small {
   font-size: 0.875rem !important;
 }
+
+
+/* custom edits */
+
+.blockcontent {
+	font-size: 1.2vw !important;
+}
+.view-board--wall .bottomInfo {
+	position: absolute;
+	bottom: 0;
+	left: 2.260396em;
+	right: 2.260396em;
+	padding-bottom: 1.09374em;
+	display: none !important;
+}
+.bottomInfo {
+	display: none !important;
+}
+
+#highcharts-1pt3rvi-3 {
+	font-size: 1.1vw !important;
+}

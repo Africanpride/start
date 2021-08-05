@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\ArticlesFormRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ArticleController extends Controller
 {
@@ -105,7 +106,7 @@ class ArticleController extends Controller
     {
         $media = '';
         $article = Article::where('slug', $slug)->first();
-        if (!$article->getFirstMedia('featured') == null) {
+        if ($article->getFirstMedia('featured') != null) {
             $media = $article->getFirstMedia('featured')->geturl();
         }
 
@@ -128,7 +129,7 @@ class ArticleController extends Controller
             $media = $article->getFirstMedia('featured')->geturl();
         }
 
-        return view('articles.edit', compact('article','creators','media'));
+        return view('articles.edit', compact('article','creators'));
     }
 
     /**
@@ -188,20 +189,42 @@ class ArticleController extends Controller
      */
     public function destroy($slug)
     {
-        try {
-            $article = Article::where('slug', $slug)->first();
-            $title = $article->title;
-            $article->delete();
+                // Get the article via it's slug
+                $article = Article::where('slug', $slug)->first();
+                $title = $article->title;
 
-            return redirect()->route('articles.index', $article->slug)->with('success_message','<b> <i>' . $title .  '</i></b>' .  ' is deleted successfully ');
+                // Delete the article finally
+                try {
 
-        } catch (Exception $exception) {
+                    $article->delete();
 
-            return back()->withInput()
-                ->withErrors(['unexpected_error' => trans('articles.unexpected_error')]);
-        }
+                    return redirect()->route('articles.index', $article->slug)->with('toast_success','<b> <i>' . $title .  '</i></b>' .  ' is deleted successfully ');
+
+                } catch (Exception $exception) {
+
+                    return back()->withInput()
+                        ->withErrors(['unexpected_error' => trans('articles.unexpected_error')]);
+                }
     }
 
+    public function massDelete($array) {
+                // Delete the article finally
+
+                try {
+                    // Get each article via it's slug
+                    foreach($array as $slug) {
+                        $article = Article::where('slug', $slug)->first()->delete();
+                    }
+
+                    return redirect()->route('articles.index')->with('toast_success','Articles deleted successfully ');
+
+                } catch (Exception $exception) {
+
+                    return back()->withInput()
+                        ->withErrors(['unexpected_error' => trans('articles.unexpected_error')]);
+                }
+
+    }
 
 
 }

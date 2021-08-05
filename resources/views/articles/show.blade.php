@@ -14,18 +14,29 @@
 </div>
 @endif
 
+
 <div class="row">
     <div class="col-12">
         <div class="card mb-30">
             <div class="card-body py-30 pb-0">
-                <div class="row mt-5 pb-2 pt-5 align-items-center media border-bottom">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="back">
+                            <a href="{{ url()->previous() }}"  class="btn">
+
+                            <span class="bi-backspace" aria-hidden="true"></span>
+                        </a></div>
+                    </div>
+                </div>
+                <div class="row pb-2 pt-5 align-items-center media border-bottom">
+
 
                     <div class="col-xl-6 col-md-6 col-sm-6 col-xs-12  chat-header-left mb-3 mb-md-0">
                         <!-- Profile -->
                         <div class="d-flex align-items-center profile">
                             <div class="avatar position-relative mr-3">
-                                <img src="{{ '/backend/assets/img/avatar/'. $article->user->profile->avatar }}"
-                                    alt="" class="img-50">
+                                <img src="{{ '/backend/assets/img/avatar/'. $article->user->profile->avatar }}" alt=""
+                                    class="img-50">
 
                                 <span class="avatar-status bg-teal"></span>
                             </div>
@@ -65,7 +76,7 @@
 
 
                             <form method="POST" action="{!! route('articles.destroy', $article->slug) !!}"
-                                accept-charset="UTF-8" >
+                                accept-charset="UTF-8">
                                 <input name="_method" value="DELETE" type="hidden">
                                 {{ csrf_field() }}
                                 <div class="" role="group">
@@ -79,7 +90,8 @@
                                         <span class="bi-file-earmark-break" aria-hidden="true"></span>
                                     </a>
 
-                                    <button id="confirm-text" type="submit" class="btn btn-danger " title="{{ trans('articles.delete') }}"
+                                    <button id="confirm-text" type="submit" class="btn btn-danger "
+                                        title="{{ trans('articles.delete') }}"
                                         onclick="return confirm(&quot;{{ trans('articles.confirm_delete') }}?&quot;)">
                                         <span class="bi-trash" aria-hidden="true"></span>
                                     </button>
@@ -96,78 +108,81 @@
                 </div>
 
 
-                    <div class="card-body">
-                        <div class="border-bottom pb-10"></div>
-                        <img src="{{ $media ?? ' ' }}" alt="">
-                        <div class="content pt-30 font-italic font-16 font-weight-bold ">{!! $article->notes !!}</div>
-                        <div class="content news-card pt-30 font-17 ">{!! $article->content !!}</div>
-                    </div>
+                <div class="card-body">
+                    <div class="border-bottom pb-10"></div>
+                    <img src="{{ $media ?? ' ' }}" alt="">
+                    <div class="content pt-30 font-italic font-16 font-weight-bold ">{!! $article->notes !!}</div>
+                    <div class="content news-card pt-30 font-17 ">{!! $article->content !!}</div>
+                </div>
 
-                    <div class="post-footer d-flex mb-20 mt-20 pt-20 pb-3 border-bottom display-none ">
+                <div class="post-footer d-flex mb-20 mt-20 pt-20 pb-3 border-bottom display-none ">
 
 
-                        <livewire:counter />
-                        <!-- End Love -->
+                    <livewire:counter />
+                    <!-- End Love -->
 
-                        <!-- Comment -->
-                        <div class="comment d-flex align-items-center">
-                            <div class="icon">
-                                <img src=" {{ asset('backend/assets/img/svg/comment.svg' ) }} " alt="" class="svg">
-                            </div>
-                            <div class="content">
-                                <span class="mr-1 disqus-comment-count" data-disqus-url="{{ Request::url() }}"> Comments</span>
-                            </div>
+                    <!-- Comment -->
+                    <div class="comment d-flex align-items-center">
+                        <div class="icon">
+                            <img src=" {{ asset('backend/assets/img/svg/comment.svg' ) }} " alt="" class="svg">
                         </div>
-                        <!-- End Comment -->
-
-                        <!-- Share -->
-                        <div class="share d-flex align-items-center">
-                            <div class="icon">
-                                <img src=" {{ asset('backend/assets/img/svg/share2.svg' ) }} " alt="" class="svg">
-                            </div>
-                            <div class="content">
-                                <span class="mr-1">3</span>Share
-                            </div>
+                        <div class="content">
+                            <span class="mr-1 disqus-comment-count" data-disqus-url="{{ Request::url() }}">
+                                Comments</span>
                         </div>
-                        <!-- End Share -->
                     </div>
+                    <!-- End Comment -->
 
-
-                    <div class="col-12 mb-16 pb-16">
-                        <div id="disqus_thread"></div>
-                        <script>
-                            /**
-                             *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-                             *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-                            /*
-
-                            */
-                            var disqus_config = function () {
-                                this.page.url ='{{ Request::url() }}'; // Replace PAGE_URL with your page's canonical URL variable
-                                this.page.identifier ='{{ $article->slug }}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                            };
-
-                            (function () { // DON'T EDIT BELOW THIS LINE
-                                var d = document,
-                                    s = d.createElement('script');
-                                s.src = 'https://sktaeroshutter.disqus.com/embed.js';
-                                s.setAttribute('data-timestamp', +new Date());
-                                (d.head || d.body).appendChild(s);
-                            })();
-
-                            // DISQUSWIDGETS.getCount({reset: true});
-
-                        </script>
-                        <noscript>Please enable JavaScript to view the <a
-                                href="https://disqus.com/?ref_noscript">comments powered by Disqus and
-                                {{ config('app.name')}}.</a></noscript>
+                    <!-- Share -->
+                    <div class="share d-flex align-items-center">
+                        <div class="icon">
+                            <img src=" {{ asset('backend/assets/img/svg/share2.svg' ) }} " alt="" class="svg">
+                        </div>
+                        <div class="content">
+                            <span class="mr-1">3</span>Share
+                        </div>
                     </div>
+                    <!-- End Share -->
+                </div>
 
+
+                <div class="col-12 mb-16 pb-16">
+                    <div id="disqus_thread"></div>
+                    <script>
+                        /**
+                         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                        /*
+
+                        */
+                        var disqus_config = function () {
+                            this.page.url =
+                            '{{ Request::url() }}'; // Replace PAGE_URL with your page's canonical URL variable
+                            this.page.identifier =
+                            '{{ $article->slug }}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                        };
+
+                        (function () { // DON'T EDIT BELOW THIS LINE
+                            var d = document,
+                                s = d.createElement('script');
+                            s.src = 'https://sktaeroshutter.disqus.com/embed.js';
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                        })();
+
+                        // DISQUSWIDGETS.getCount({reset: true});
+
+                    </script>
+                    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments
+                            powered by Disqus and
+                            {{ config('app.name')}}.</a></noscript>
                 </div>
 
             </div>
+
         </div>
     </div>
+</div>
 </div>
 
 

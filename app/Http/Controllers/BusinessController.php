@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Business;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class BusinessController extends Controller
 {
@@ -17,6 +19,20 @@ class BusinessController extends Controller
         // if (Business::all()->count() > 0) {
         //     $this->update();
         // }
+
+        // $media = '';
+        // $business = Business::where('slug', $slug)->first();
+        // if (!$business->getFirstMedia('featured') == null) {
+        //     $media = $business->getFirstMedia('featured')->geturl();
+        // }
+
+        // $business = Business::where('main', 'first')->first();
+
+        // dd($business->getFirstMediaUrl('logo'));
+        // $userCount = User::count();
+        // dd(rand(1,$userCount));
+        // dd(User::count());
+
         return view('seo');
     }
 
@@ -38,6 +54,8 @@ class BusinessController extends Controller
      */
     public function store(Request $request)
     {
+
+        // dd($request->image());
         // check if record exists.
         $business = Business::where('main', 'first')->first();
 
@@ -45,16 +63,22 @@ class BusinessController extends Controller
         if (!$business)
         {
             // Data does not exists. Create it and add the 'main' attribute.
-            Business::Create($request->except(['_token', '_method' ]) + ['main' => 'first']);
+            $business = Business::Create($request->except(['_token', '_method' ]) + ['main' => 'first']);
+            if ($request->hasfile('image'))  {
+                $business->addMediaFromRequest('image')->toMediaCollection('logo');
+            }
         } else {
 
         // Data exist. Find it and update it with incoming record.
         $business_record = Business::where('main', 'first')->first();
         $business_record->Update($request->except(['_token', '_method' ]));
+        if ($request->hasfile('image'))  {
+            $business_record->addMediaFromRequest('image')->toMediaCollection('logo');
+        }
 
         }
 
-        return redirect()->back()->with('success_message', 'Business Record updated successfully');
+        return redirect()->back()->with('toast_success', 'Business/Company Record Created Successfully');
 
     }
 
@@ -91,7 +115,7 @@ class BusinessController extends Controller
     {
         //
 
-        dd($business->id);
+        // dd($business->id);
     }
 
     /**

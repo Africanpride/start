@@ -1,15 +1,36 @@
 <div>
-    <input wire:model="search" type="search" placeholder="Search users here..."/>
+    <input
+        wire:model="query"
+        wire:keydown.escape="resetFilters"
+        wire:keydown.tab="resetFilters"
+        type="text"
+        placeholder="Search users here..."
+        class="form-input"
+    />
 
-   
-        @foreach($users as $user)
+@if (!empty($query))
 
-        <div class="alert alert-primary " role="alert">
-            <a href="{{ route('profile.show', [$user->profile->uuid]) }}"
-                class="details-btn">
-                {{ $user->full_name }}
-            </a>
-        </div>
+        @if (!empty($users))
+            @foreach($users as $user)
+            {{-- {{ $user->first_name }} --}}
 
-        @endforeach
+            <div class="alert alert-primary " role="alert">
+                <a href="{{ route('profile.show', [$user->profile->uuid]) }}"
+                    class="details-btn">
+                    {{ $user->full_name }}
+                </a>
+            </div>
+
+            @endforeach
+        @else
+
+            <div class="alert alert-primary " role="alert">
+                {{__('No result ..')}}
+            </div>
+
+        @endif
+
+@endif
+
+
 </div>

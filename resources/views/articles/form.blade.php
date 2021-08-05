@@ -13,7 +13,7 @@
 
 
 <div class="textarea p-30">
-    <textarea id="full-editor" name="content" rows="5" cols="40" class="form-control tinymce-editor mb-40 pb-40 col-md-9">{!! old('content', optional($article)->content) !!}</textarea>
+    <textarea id="full-editor" name="content" rows="5" cols="40" class="full-editor form-control tinymce-editor mb-40 pb-40 col-md-9">{!! old('content', optional($article)->content) !!}</textarea>
 </div>
 <div class="textarea  p-30">
     <textarea name ="notes" id="textarea1" class="theme-input-style style--seven" placeholder="Type Article Notes Notes Here">{!! old('notes', optional($article)->notes) !!}</textarea>

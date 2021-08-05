@@ -6,8 +6,9 @@ use Spatie\Image\Manipulations;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\MediaLibrary\HasMedia;
 
-class Product extends Model
+class Product extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia ;
 
@@ -22,10 +23,18 @@ class Product extends Model
         'deleted_at'
     ];
 
-    // public function getRouteKeyName()
-    // {
-    //     return 'id';
-    // }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+    public function author() {
+        return $this->belongsTo(User::class);
+    }
+
     public function getPriceSymbolAttribute (): string {
         return 'GHS';
     }
@@ -33,24 +42,30 @@ class Product extends Model
     public function specifications() {
         $this->hasMany(ProductSpecifications::class);
     }
+
     public function categories() {
         return $this->belongsToMany(ProductCategory::class)->withTimestamps();
     }
 
     public function registerMediaCollections(): void    {
 
-        $this->addMediaCollection('avatar')
-            ->singleFile()
-            ->useFallbackUrl('/backend/assets/img/avatar/avatar.jpg')
-            ->useFallbackPath(public_path('/backend/assets/img/avatar/avatar.jpg'));
+        $this->addMediaCollection('featured')
+            // ->singleFile()
+            ->useFallbackUrl('/backend/assets/img/product/pg1.png')
+            ->useFallbackPath(public_path('/backend/assets/img/product/pg1.png'));
 
-        $this->addMediaCollection('category_image')
+            $this->addMediaCollection('category_image')
             // ->withResponsiveImages()
             ->singleFile();
 
-        $this->addMediaConversion('banner')
+            $this->addMediaConversion('banner')
             ->width(1024)
             ->height(300)
+            ->sharpen(10);
+
+            $this->addMediaConversion('Product')
+            ->width(600)
+            ->height(500)
             ->sharpen(10);
 
         $this->addMediaConversion('thumb')

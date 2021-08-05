@@ -2,8 +2,22 @@
 
 
 @section('content')
-labels: {{ json_encode($analyticsData) }}
-{{-- Country Sessions: {{ json_encode($country_sessions) }} --}}
+
+<ol>
+    @foreach ($top_browser_browser as $browser)
+        <li>
+            <span> {{ $browser }} </span>
+
+        </li>
+    @endforeach
+</ol>
+
+
+
+
+
+{{-- labels: {{ json_encode($analyticsData) }} --}}
+
 {{-- labels: {!! json_encode($dates) !!}, --}}
 
 {{-- {{ $analyticsData }} --}}

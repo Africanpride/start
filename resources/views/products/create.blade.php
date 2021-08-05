@@ -2,252 +2,59 @@
 
 @section('content')
 
-<div class="container-fluid">
-    <!-- Card -->
-    <div class="card">
-        <!-- Product Details -->
-        <div class="product-details pb-0">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="pd-img-wrapp position-relative mb-5 mb-lg-0">
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-30">
+            <div class="card-body py-30 pb-0">
 
-                        <img id="img_01"
-                            src=" {{ asset('/backend/assets/img/product/product-details.jpg') }} "
-                            data-zoom-image="{{ asset('backend/assets/img/product/product-details-large.jpg') }} "
-                            alt="" />
 
-                        <div id="gal1">
-                            <a href="#"
-                                data-image="{{ asset('backend/assets/img/product/product-details.jpg') }} "
-                                data-zoom-image="{{ asset('backend/assets/img/product/product-details-large.jpg') }} ">
-                                <img id="img_02"
-                                    src=" {{ asset('/backend/assets/img/product/product-details.jpg') }} "
-                                    alt="" />
-                            </a>
+                <div class="container-fluid d-flex justify-content-between mb-3 align-items-center">
 
-                            <a href="#"
-                                data-image="{{ asset('backend/assets/img/product/product-details-2.jpg') }} "
-                                data-zoom-image="{{ asset('backend/assets/img/product/product-details-2-large.jpg') }} ">
-                                <img id="img_03"
-                                    src=" {{ asset('/backend/assets/img/product/product-details-2.jpg') }} "
-                                    alt="" />
-                            </a>
-
-                            <a href="#"
-                                data-image="{{ asset('backend/assets/img/product/product-details-3.jpg') }} "
-                                data-zoom-image="{{ asset('backend/assets/img/product/product-details-3-large.jpg') }} ">
-                                <img id="img_04"
-                                    src=" {{ asset('/backend/assets/img/product/product-details-3.jpg') }} "
-                                    alt="" />
-                            </a>
-                        </div>
-
+                    <div class="pull-left">
+                        <h4 class="c1">{{ trans('Create New product') }}</h4>
                     </div>
+
+
+                    <!-- Main Header Button -->
+                    <div class="main-header-btn ml-md-1">
+                        <a href="{{ route('products.index') }}" class="btn">{{__(' Product List')}}</a>
+                    </div>
+
                 </div>
 
-                <div class="col-lg-8">
-                    <!-- Product Details Content -->
-                    <div class="product-details-content position-relative">
-                        <!-- Product Title -->
-                        <h4 class="product_title">
-                            {{ $product->name ?? ' Product Name ' }}</h4>
-                        <!-- End Product Title -->
+                    <div class="panel-body">
 
-                        <!-- Product Price -->
-                        @if(App\Models\Product::all()->count() > 0)
-                            <p class="price">
-                                <span class="woocommerce-Price-amount amount"><span
-                                        class="woocommerce-Price-currencySymbol">{{ $product->price_symbol ?? '$' }}
-                                    </span>{{ $product->specifications()->price ?? '100.00' }}</span>
-                            </p>
-                        @else
-                            <p class="price">
-                                <span class="woocommerce-Price-amount amount"><span
-                                        class="woocommerce-Price-currencySymbol">{{ __('$') }}
-                                    </span>{{ __('100.00') }}</span>
-                            </p>
-                        @endif
-                        <!-- End Product Price -->
-
-                        <!-- Color Group -->
-                        <div class="color-group d-flex align-items-center">
-                            <span class="list-heading bold">Color</span>
-                            <ul class="mb-0 list-inline">
-                                <li><a href="#" class="color color1"><span></span></a></li>
-                                <li><a href="#" class="color color2"><span></span></a></li>
-                                <li><a href="#" class="color color3 active"><span></span></a></li>
-                                <li><a href="#" class="color color4"><span></span></a></li>
+                        @if($errors->any())
+                            <ul class="alert alert-danger">
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
                             </ul>
-                        </div>
-                        <!-- End Color Group -->
+                        @endif
 
-                        <!-- Product Review -->
-                        <div class="product-review d-flex align-items-center">
-                            <span class="list-heading bold">Rating</span>
-                            <!-- Rating -->
-                            <div class="star-rating">
-                                <a href="#"><img
-                                        src=" {{ asset('/backend/assets/img/svg/star.svg') }} "" alt="" class="
-                                        svg"></a>
-                                <a href="#"><img
-                                        src=" {{ asset('/backend/assets/img/svg/star.svg') }} "" alt="" class="
-                                        svg"></a>
-                                <a href="#"><img
-                                        src=" {{ asset('/backend/assets/img/svg/star.svg') }} "" alt="" class="
-                                        svg"></a>
-                                <a href="#"><img
-                                        src=" {{ asset('/backend/assets/img/svg/star2.svg') }} "" alt="" class="
-                                        svg"></a>
-                                <a href="#"><img
-                                        src=" {{ asset('/backend/assets/img/svg/star2.svg') }} "" alt="" class="
-                                        svg"></a>
+                        <form method="POST" action="{{ route('products.store') }}"
+                            accept-charset="UTF-8" id="create_article_form" name="create_article_form"
+                            class="form-horizontal"  enctype="multipart/form-data">
+                            {{ csrf_field() }}
+
+                            @include('products.form', [
+                            'product' => null,
+                            ])
+
+                            <div class="form-group mt-20">
+                                <div class="col-md-12">
+                                    <input class="btn btn-block" type="submit"
+                                        value="{{ trans('Save Product') }}">
+                                </div>
                             </div>
-                            <!-- End Product Rating -->
-                        </div>
-                        <!-- End Product Review -->
 
-                        <!-- Add to Cart Button -->
-                        <button type="submit" class="single_add_to_cart_button button btn btn-fill">Add To Cart</button>
-                        <!-- End Add to Cart Button -->
+                        </form>
 
-                        <!-- Product Description -->
-                        <div class="woocommerce-product-details__short-description">
-                            <h5>{{ __('Product Description') }}</h5>
-                            <p>{{ $product->description ?? ' Product Description Here' }}
-                            </p>
-                        </div>
-                        <!-- End Product Description -->
                     </div>
-                    <!-- End Product Details Content -->
-                </div>
+
             </div>
-
-
-
-
-            <!-- Product Grid -->
-            <div class="product-grid pt-5">
-                <div class="row">
-                    <div class="col-12">
-                        <h4 class="font-20 mb-4">Related Products</h4>
-                    </div>
-                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
-                        <!-- Product Grid Item -->
-                        <div class="product-grid-item mb-30">
-                            <div class="product-img mb-3">
-                                <a href="product-details.html">
-                                    <img src=" {{ asset('/backend/assets/img/product/pg1.png') }}"
-                                        class="w-100" alt="">
-                                </a>
-                            </div>
-                            <div class="product-content">
-                                <h6 class="mb-10">$24</h6>
-                                <a href="product-details.html">
-                                    <p class="black">3pc Outdoor Set - Grey/Grey</p>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- End Product Grid Item -->
-                    </div>
-                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
-                        <!-- Product Grid Item -->
-                        <div class="product-grid-item mb-30">
-                            <div class="product-img mb-3">
-                                <a href="product-details.html">
-                                    <img src=" {{ asset('/backend/assets/img/product/pg2.png') }}"
-                                        class="w-100" alt="">
-                                </a>
-                            </div>
-                            <div class="product-content">
-                                <h6 class="mb-10">$24</h6>
-                                <a href="product-details.html">
-                                    <p class="black">Left Arm Patio Loveseat</p>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- End Product Grid Item -->
-                    </div>
-                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
-                        <!-- Product Grid Item -->
-                        <div class="product-grid-item mb-30">
-                            <div class="product-img mb-3">
-                                <a href="product-details.html">
-                                    <img src=" {{ asset('/backend/assets/img/product/pg3.png') }}"
-                                        class="w-100" alt="">
-                                </a>
-                            </div>
-                            <div class="product-content">
-                                <h6 class="mb-10">$24</h6>
-                                <a href="product-details.html">
-                                    <p class="black">Felton Tufted Sofa - Gray</p>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- End Product Grid Item -->
-                    </div>
-                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
-                        <!-- Product Grid Item -->
-                        <div class="product-grid-item mb-30">
-                            <div class="product-img mb-3">
-                                <a href="product-details.html">
-                                    <img src=" {{ asset('/backend/assets/img/product/pg4.png') }}"
-                                        class="w-100" alt="">
-                                </a>
-                            </div>
-                            <div class="product-content">
-                                <h6 class="mb-10">$24</h6>
-                                <a href="product-details.html">
-                                    <p class="black">Trellis Elevated Fretwork </p>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- End Product Grid Item -->
-                    </div>
-                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
-                        <!-- Product Grid Item -->
-                        <div class="product-grid-item mb-30">
-                            <div class="product-img mb-3">
-                                <a href="product-details.html">
-                                    <img src=" {{ asset('/backend/assets/img/product/pg5.png') }}"
-                                        class="w-100" alt="">
-                                </a>
-                            </div>
-                            <div class="product-content">
-                                <h6 class="mb-10">$24</h6>
-                                <a href="product-details.html">
-                                    <p class="black">Valencia Area Rug</p>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- End Product Grid Item -->
-                    </div>
-                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
-                        <!-- Product Grid Item -->
-                        <div class="product-grid-item mb-30">
-                            <div class="product-img mb-3">
-                                <a href="product-details.html">
-                                    <img src=" {{ asset('/backend/assets/img/product/pg6.png') }}"
-                                        class="w-100" alt="">
-                                </a>
-                            </div>
-                            <div class="product-content">
-                                <h6 class="mb-10">$24</h6>
-                                <a href="product-details.html">
-                                    <p class="black">Sullivan Swivel Glider Chair</p>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- End Product Grid Item -->
-                    </div>
-                </div>
-            </div>
-            <!-- End Product Grid -->
         </div>
-        <!-- End Product Details -->
     </div>
-    <!-- End Card -->
-
 </div>
-
 
 @endsection

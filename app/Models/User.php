@@ -60,9 +60,21 @@ class User extends Authenticatable
     public function articles() {
         return $this->hasMany(Article::class);
     }
+    public function products() {
+        return $this->hasMany(Product::class);
+    }
 
     public function services() {
         return $this->hasMany(Service::class);
+    }
+
+    public static function search($search)
+    {
+        return empty($search) ? static::query()
+            : static::query()->where('id', 'like', '%'.$search.'%')
+                ->orWhere('first_name', 'like', '%'.$search.'%')
+                ->orWhere('last_name', 'like', '%'.$search.'%')
+                ->orWhere('email', 'like', '%'.$search.'%');
     }
 
     protected static function boot()
@@ -75,5 +87,14 @@ class User extends Authenticatable
             Profile::create(['user_id' => $user->id]);
             // dd($user);
         });
+
+        static::deleting(function($user) {
+            // Create profile here
+            // dd($user->id);
+            $user->articles->destroy();
+            // dd($user);
+        });
+
+
     }
 }

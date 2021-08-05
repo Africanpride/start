@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 // use App\Models\Article_Image;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Article extends Model implements HasMedia
 {
 
-    use SoftDeletes, InteractsWithMedia;
+    use HasFactory, SoftDeletes, InteractsWithMedia;
 
 
     /**
@@ -94,13 +95,10 @@ class Article extends Model implements HasMedia
     }
     public function registerMediaCollections(): void    {
 
-            $this->addMediaCollection('avatar')
-                ->singleFile()
-                ->useFallbackUrl('/backend/assets/img/avatar/avatar.jpg')
-                ->useFallbackPath(public_path('/backend/assets/img/avatar/avatar.jpg'));
-
             $this->addMediaCollection('featured')
                 // ->withResponsiveImages()
+                ->useFallbackUrl('/backend/assets/img/product/pg1.png')
+                ->useFallbackPath(public_path('/backend/assets/img/product/pg1.png'))
                 ->singleFile();
 
             $this->addMediaConversion('thumb')
@@ -111,6 +109,11 @@ class Article extends Model implements HasMedia
             $this->addMediaConversion('square')
                 ->width(212)
                 ->height(212)
+                ->sharpen(10);
+
+            $this->addMediaConversion('backend')
+                ->width(230)
+                ->height(192)
                 ->sharpen(10);
 
             $this->addMediaConversion('old-picture')

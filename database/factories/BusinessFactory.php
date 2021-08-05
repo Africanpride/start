@@ -21,8 +21,14 @@ class BusinessFactory extends Factory
      */
     public function definition()
     {
+        // 'business_name', 'business_description', 'business_email', 'business_number', 'seo_keywords', 'main'
         return [
-            //
+            'business_name' => $this->faker->company(),
+            'business_description' =>  $this->faker->paragraph($nbSentences = 3, $variableNbSentences = true),
+            'business_email' =>  $this->faker->email(),
+            'twitter_handle' =>  '@africanpride',
+            'business_number' =>  $this->faker->e164PhoneNumber(),
+            'main' =>  'first',
         ];
     }
 }

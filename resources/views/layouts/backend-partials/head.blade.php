@@ -39,11 +39,6 @@
     <link rel="stylesheet" href="{{ asset('/public/css/app.css') }}">
     <!-- ======= END MAIN STYLES ======= -->
 
-    {{-- <link href="https://cdn.quilljs.com/1.0.5/quill.snow.css" rel="stylesheet"> --}}
-
-    {{-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"> --}}
-    {{-- <link rel='stylesheet' href="//bower_components/glyphicons-only-bootstrap/css/bootstrap.min.css" /> --}}
-    {{-- <link rel = "stylesheet" href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> --}}
 
     <link rel="stylesheet"
         href="{{ asset('backend/assets/plugins/dropzone/dropzone.min.css') }}">

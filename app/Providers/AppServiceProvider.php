@@ -29,9 +29,12 @@ class AppServiceProvider extends ServiceProvider
         //
         Paginator::defaultView('pagination::bootstrap-4');
 
-        $business = Business::all()->first();
-        // view()->share('business', $business);
-        View::share('business', $business);
+
+        // $business = Business::all()->first();
+        // if (!$business->getFirstMedia('featured') == null) {
+        //     $media = $business->getFirstMedia('featured')->geturl();
+        // }
+        // View::share('business', $business);
 
     }
 }

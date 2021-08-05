@@ -1,5 +1,5 @@
 
-    
+
     /*============================================
     ** Add New Board Card
     ==============================================*/
@@ -10,10 +10,10 @@
         e.preventDefault();
         var title = $(this).parents('form').children('textarea').val();
         var date = $(this).parents('.actions').siblings('.date').children('.date-text').text();
-        
+
         // Check Title is Empty
         if( title != "" ) {
-        
+
             var boardCard = d.createElement('div');
                 boardCard.className = 'board-card';
 
@@ -35,7 +35,7 @@
                 dateA.textContent = date;
 
 
-                
+
                 left.append(dateA)
                 infoBar.append(left);
                 boardCard.append(infoBar);
@@ -46,7 +46,7 @@
         // Textarea value reset
         $(this).parents('form').children('textarea').val(null);
     }
-    
+
     if( boardComposer.length ) {
 
         boardComposer.find('.add-card').hide();
@@ -102,12 +102,12 @@
             value: function append() {
               var argArr = Array.prototype.slice.call(arguments),
                 docFrag = document.createDocumentFragment();
-              
+
               argArr.forEach(function (argItem) {
                 var isNode = argItem instanceof Node;
                 docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
               });
-              
+
               this.appendChild(docFrag);
             }
           });
@@ -127,7 +127,7 @@
         // If press Enter key
         if( e.keyCode === 13 ) {
             e.preventDefault();
-            
+
             // Check value
             if( $(this).val() ) {
                 //Create Board Header
@@ -171,7 +171,7 @@
                         setAttributes(dpmenuA, {"src": "#"});
                         dropdownMenu.append(dpmenuA)
                 }
-                
+
                 dropdownBtn.append(dropdownMenu);
                 boardHeader.append(dropdownBtn);
 
@@ -219,7 +219,7 @@
                 var day = new Date().toLocaleDateString('en-US', { day: 'numeric' });
                 var month = new Date().toLocaleDateString('en-US', { month: 'long' });
                 addCardSpan.textContent = day + " " + month;
-                
+
                 setAttributes(addCardSpan, { "class": "date-text" });
                 date.append(addCardSpan);
                 dateActionWrap.append(date);
@@ -271,7 +271,7 @@
                 //Cancel btn click action
                 boardCompose.querySelector('.add-card .cancel').addEventListener('click', function(e) {
                     e.preventDefault();
-                    
+
                     $(this).parents('.add-card').hide();
                     $(this).parents('.add-card').siblings('.add-another-card').show();
                 });
@@ -280,7 +280,7 @@
                 $('.add-card').on('click', function(e) {
                     e.stopPropagation();
                 });
-        
+
                 // Body Click
                 $('body').on('click', function(e) {
                     $(this).find('.add-card').hide();
@@ -352,7 +352,7 @@
         $( '.board-members-list' ).find('.member-item').removeClass('selected');
         $(this).addClass('selected');
     });
-    
+
 
     $('.board-card').on('click', function() {
         $('#projectTaskDetails').modal('show')
@@ -370,13 +370,13 @@
 
         var textarea = $(this).siblings('textarea');
         var height = $(this).height() + 10 + 'px';
-        
+
         textarea.val($(this).text()).addClass('isEditing').css('height', height);
     });
 
     titleTextarea.on('keypress', function(e) {
         if(e.keyCode == 13) {
-            
+
             e.preventDefault();
             $(this).removeClass('isEditing').siblings('h4').text($(this).val());
         }
@@ -384,7 +384,7 @@
 
     $(document).on('click', 'body', function(e) {
         if(titleTextarea.hasClass('isEditing')) {
-            
+
             titleTextarea.siblings('h4').text(titleTextarea.val());
             titleTextarea.removeClass('isEditing');
         }
@@ -482,13 +482,13 @@
         $( '.board-labels-list' ).find('.label-item').removeClass('selected');
         $(this).parent('.label-item').addClass('selected');
     });
-    
+
     // Boards Labels Select color add & remove class
     $( '.board-labels-select-color, .edit-labels-no-color' ).find('.label-item .label').on('click', function(e) {
         $( '.board-labels-select-color, .edit-labels-no-color' ).find('.label-item').removeClass('active');
         $(this).parent('.label-item').addClass('active');
     });
-    
+
     // Due Date Picker due btn
     $( '.change-card-btns .change-card-due-date, #default-date2' ).on('click', function (e) {
         e.preventDefault();
@@ -544,7 +544,7 @@
         e.preventDefault();
         $( '#projectLabelModal' ).find( '.modal-content.main-labels' ).show();
         $( '#projectLabelModal' ).find( '.modal-content.add-labels' ).hide();
-        
+
         addNewLabel();
     });
 
@@ -553,16 +553,16 @@
         e.preventDefault();
         $( '#projectLabelModal' ).find( '.modal-content.main-labels' ).hide();
         $( '#projectLabelModal' ).find( '.modal-content.add-labels' ).show();
-        
+
         $( '.board-labels-select-color' ).find( '.label-item .label' ).each( (i, ele) => {
-            
+
             if($(this).siblings('.label').attr('id') == ele.id) {
                 $( '.board-labels-select-color, .edit-labels-no-color' ).find( '.label-item' ).removeClass('active');
-                ele.parentNode.classList.add('active'); 
+                ele.parentNode.classList.add('active');
             }
         });
     });
-    
+
 
     var isIE = /*@cc_on!@*/false || !!document.documentMode;
 
@@ -575,9 +575,9 @@
 
         var coords = this.getBoundingClientRect();
         var projectMemberModal = $('#projectMemberModal');
-        
-        
-        
+
+
+
         if($(window).width() < 1024 &&  $(window).width() > 767) {
             projectMemberModal.css({
                 'left': coords.left + window.scrollX - 144,
@@ -607,15 +607,15 @@
         }
     });
 
-    
+
     // Member Add btn For Task Header
     $('.member .btn-circle.task-header').on('click', function(e) {
             e.stopPropagation();
-    
+
             var coords = this.getBoundingClientRect();
             var projectMemberModal = $('#projectMemberModal');
-            
-            
+
+
             if($(window).width() < 1024 &&  $(window).width() > 767) {
                 projectMemberModal.css({
                     'left': coords.left + window.scrollX - 144,
@@ -637,7 +637,7 @@
                 });
             }
         });
-    
+
     // Labels Add btn
     $(document).on('click', '#projectTaskDetails .add-label, #projectTaskDetails .change-card-label', function(e) {
         e.stopPropagation();
@@ -645,7 +645,7 @@
         $('#projectMemberModal, #projectLabelModal, #projectChecklistModal, #projectMoveModal, #projectCopyModal, #projectShareModal, .checklist-add-control-wrap').hide();
         titleTextarea.removeClass('isEditing');
         $('.checklist-add-control-wrap').siblings('.add-item-btn').show();
-        
+
 
         var projectLabelModal = $('#projectLabelModal');
 
@@ -764,7 +764,7 @@
         e.stopPropagation();
         $('#projectMemberModal, #projectLabelModal, #projectChecklistModal, #projectMoveModal, #projectCopyModal, #projectShareModal, .checklist-add-control-wrap').hide();
         titleTextarea.removeClass('isEditing');
-        
+
         var coords = this.getBoundingClientRect();
         var projectCopyModal = $('#projectCopyModal');
 
@@ -804,9 +804,9 @@
         $('#projectMemberModal, #projectLabelModal, #projectChecklistModal, #projectMoveModal, #projectCopyModal, #projectShareModal, .checklist-add-control-wrap').hide();
         titleTextarea.removeClass('isEditing');
         $('.dropdown-menu.checkbox2').removeClass('show');
-        
+
         var projectShareModal = $('#projectShareModal');
-        
+
 
         if($(window).width() < 1024 &&  $(window).width() > 767) {
             projectShareModal.css({
@@ -858,7 +858,7 @@
         $('.dropdown-menu.checkbox2').removeClass('show');
     });
 
-    
+
     /*============================================
     ** Attachment Close
     ==============================================*/
@@ -908,7 +908,7 @@
     function addChecklistItem(e) {
         e.preventDefault();
         var checklistItemText = $(this).parents('.checklist-add-controls').siblings('textarea');
-        
+
         if(checklistItemText.val() != '') {
             addChecklistEle($(this), checklistItemText);
         }
@@ -920,7 +920,7 @@
         $('#projectMemberModal, #projectLabelModal, #projectChecklistModal, #projectMoveModal, #projectCopyModal, .checklist-add-control-wrap').hide();
 
         var checklists = d.querySelector('#projectTaskDetailsMain .checklists');
-            
+
         let inputValue = $(this).siblings('form').children('input');
 
         if(inputValue.val() != '') {
@@ -992,7 +992,7 @@
                                 if(e.keyCode === 13) {
                                     e.preventDefault();
                                     var ele = $(this);
-                                    
+
                                     if(ele.val() != '') {
                                         addChecklistEle(ele, ele);
                                     }
@@ -1002,14 +1002,14 @@
 
                         var checklistAddControls = d.createElement('div');
                             checklistAddControls.className = 'checklist-add-controls d-flex align-items-center';
-                            
+
                             var addChecklistItemBtn = d.createElement('a');
                                 addChecklistItemBtn.className = 'light-btn add-checklist-item c2-bg';
                                 addChecklistItemBtn.setAttribute('href', '#');
                                 addChecklistItemBtn.textContent = 'Add';
                                 addChecklistItemBtn.addEventListener('click', addChecklistItem);
 
-                            var iconClose = d.createElement('a');  
+                            var iconClose = d.createElement('a');
                                 iconClose.className = 'icon-close ml-2';
                                 iconClose.innerHTML = '<i class="icofont-close-line"></i>';
                                 iconClose.addEventListener('click', function(e) {
@@ -1046,7 +1046,7 @@
         if(e.keyCode === 13) {
             e.preventDefault();
             var checklistItemText = $(this);
-            
+
             if(checklistItemText.val() != '') {
                 addChecklistEle(checklistItemText, checklistItemText);
             }
@@ -1066,3 +1066,6 @@
         $(this).hide();
         $(this).siblings('.checklist-add-control-wrap').show();
     });
+
+    // new code June 2021
+

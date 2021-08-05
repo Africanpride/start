@@ -9,7 +9,7 @@
                           <div class="col-lg-4">
                              <div class="pd-img-wrapp position-relative mb-5 mb-lg-0">
 
-                                <img id="img_01" src=" {{ asset('/backend/assets/img/product/product-details.jpg') }} " data-zoom-image="{{ asset('backend/assets/img/product/product-details-large.jpg') }} " alt=""/>
+                                <img id="img_01" src=" {{ $product->getFirstMediaUrl('featured', 'product') ?? asset('/backend/assets/img/product/product-details.jpg') }} " data-zoom-image="{{  $product->getFirstMediaUrl('featured', 'product') ?? asset('/backend/assets/img/product/product-details.jpg') }} " alt=""/>
 
                                 <div id="gal1">
                                    <a href="#" data-image="{{ asset('backend/assets/img/product/product-details.jpg') }} " data-zoom-image="{{ asset('backend/assets/img/product/product-details-large.jpg') }} ">

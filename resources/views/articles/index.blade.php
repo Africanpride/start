@@ -51,27 +51,36 @@
                 <div class="panel-body panel-body-with-table">
                     <div class="table-responsive">
 
-                        <table class="table table-striped pb-60 pt-30">
+                        <table class="table table-striped pb-60 pt-30 mt-40">
                             <thead>
                                 <tr>
-                                    <th>{{ __('Articles') }}</th>
+                                    <th>{{ __('Featured Image') }}</th>
                                     {{-- <th>{{ trans('Author') }}</th> --}}
 
 
-                                    <th></th>
+                                    <th>{{ __('Article Details') }}</th>
+                                    <th>{{ __('Manage Article') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($articles as $article)
                                 <tr>
                                     <td>
+                                        <div class="img-70">
+
+                                            <img src="{{ $article->getFirstMediaUrl('featured', 'backend') }}" class="mobile-logo" alt=" {{$article->title}}" >
+                                        </div>
+                                    </td>
+                                    <td>
                                         <a href="{{ route('articles.show', $article->slug ) }}" class=""
                                             title="{{ trans('articles.show') }}">
-                                            <h4><b>{{ $article->title }} </b></h4>
+                                            <h4><b>{{Str::limit($article->title, 200, '...')  }} </b></h4>
                                         </a><br>
-                                        {{ Str::limit( $article->content, 200, ' (...)')  }} <br>
-                                        <span class="full-date mt-3 font-italic"> {{ ($article->created_at)->toRfc850String()  ?? 'Date'}}</span>
-                                        <span class="full-date mt-3 font-italic"> <i class="icofont-labour"> </i>{{ trans('Author') }}: {{ optional($article->user)->full_name }}</span>
+                                        {{ Str::limit( $article->content, 250, ' (...)')  }} <br>
+                                        <span class="full-date mt-3 font-italic">
+                                            {{ ($article->created_at)->toRfc850String()  ?? 'Date'}}</span>
+                                        <span class="full-date mt-3 font-italic"> <i class="icofont-labour">
+                                            </i>{{ trans('Author') }}: {{ optional($article->user)->full_name }}</span>
                                     </td>
                                     {{-- <td>{{ optional($article->user)->first_name }}</td> --}}
 
@@ -90,12 +99,13 @@
                                                     class="btn btn-primary" title="{{ trans('articles.edit') }}">
                                                     <span class="bi-file-earmark-break" aria-hidden="true"></span>
                                                 </a>
+                                                <button id="confirm-text2" type="submit" class="btn btn-danger z" title="{{ trans('articles.delete') }}"
+                                                onclick="return confirm(&quot;Delete {{ $article->title }}?&quot;)">
+                                                <span class="bi-trash" aria-hidden="true"></span>
+                                            </button>
 
-                                                <button type="submit" class="btn btn-danger"
-                                                    title="{{ trans('articles.delete') }}"
-                                                    onclick="return confirm(&quot;{{ trans('articles.confirm_delete') }}&quot;)">
-                                                    <span class="bi-trash" aria-hidden="true"></span>
-                                                </button>
+
+
                                             </div>
 
                                         </form>

@@ -4,7 +4,7 @@
         <div class="col-lg-6 mx-auto">
 
             <!-- Upload image input-->
-            <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+            <div class="input-group mb-3 rounded-pill shadow-sm bg-pink-light bg-dark-light">
                 <input id="upload" type="file" name="image" onchange="readURL(this);" class="form-control border-0">
                 <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
                 <div class="input-group-append">

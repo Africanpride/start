@@ -15,11 +15,15 @@ class AnalyticsController extends Controller
     // $analyticsData = Analytics::fetchVisitorsAndPageViews(Period::days(7));
     // $analyticsData = Analytics::fetchVisitorsAndPageViews(Period::months(6));
     $analyticsData = Analytics::fetchVisitorsAndPageViews(Period::days(7));
+    $pages = Analytics::fetchVisitorsAndPageViews(Period::days(15));
+    $top_referrers = Analytics::fetchTopReferrers(Period::days(365))->pluck('pageViews', 'url');
+    $top_browser_browser = Analytics::fetchTopBrowsers(Period::days(365))->pluck('browser')->toArray();
+    // dd( $top_browser_browser);
 
     $dates = $analyticsData->pluck('date');
     $visitors = $analyticsData->pluck('visitors');
     $country_sessions = $analyticsData->pluck('country_sessions');
         // return view('analytics')->with(json_encode($analyticsData));
-    return view('analytics', compact('analyticsData','dates','visitors','country_sessions'));
+    return view('analytics', compact('analyticsData','dates','visitors','country_sessions', 'top_browser_browser', 'top_referrers'));
     }
 }

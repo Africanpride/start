@@ -70,13 +70,13 @@
 
                         <!-- Add Comment -->
                         <div class="add_comment pt-1 mb-4">
-                            <div class="label-text mb-2  d-flex align-items-center">
+                            {{-- <div class="label-text mb-2  d-flex align-items-center">
                                 <span class="regular mr-10">Created By: </span>
                                 <span class="mr-1">
                                     <img src="{{ '/backend/assets/img/avatar/'. $service->author->profile->avatar }}"
                                         alt="" class="assign-avatar rounded-circle avatar">
                                 </span><span>{{ $service->author->fullName }}</span>
-                            </div>
+                            </div> --}}
 
                         </div>
                         <!-- End Add Comment -->

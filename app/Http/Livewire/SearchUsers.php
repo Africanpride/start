@@ -8,33 +8,36 @@ use Livewire\Component;
 
 class SearchUsers extends Component
 {
-    public $search = '';
-    
-    
-   
-    public function render()
-    {
-        return view('livewire.search-users', [
-            'users' => User::where('first_name',  $this->search)
-                            ->orWhere('last_name', $this->search)
-                            ->orWhere('email', $this->search)
-                            ->get()
-        ]);
+    public $query, $users = [], $search = '';
+
+    public function mount() {
+        $this->query = '';
+        $this->users = '';
     }
+
+    public function resetFilters()
+    {
+        // reset properties to null
+        $this->reset(['query', 'users']);
+
+    }
+
+    public function updatedQuery() {
+        $this->users = User::where('first_name', 'like', '%' . $this->query . '%' )
+        ->orwhere('last_name', 'like', '%' . $this->query . '%' )
+        ->orwhere('email', 'like', '%' . $this->query . '%' )
+        ->get();
+        // ->toArray();
+
+    }
+
+
+    public function render() {
+
+        return view('livewire.search-users');
+    }
+
+
 }
 
-
-// class SearchUsers extends Component
-// {
-//     public $search;
-
-//     protected $queryString = ['search'];
-
-//     public function render()
-//     {
-//         return view('livewire.search-users', [
-//             'users' => User::where('first_name', 'like', '%'.$this->search.'%')->get(),
-//         ]);
-//     }
-// }
 
